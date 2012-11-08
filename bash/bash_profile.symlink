@@ -1,0 +1,8 @@
+
+# shortcut to dotfiles path is $DOT
+export DOT=$HOME/.dotfiles
+
+# source every .bash file in this rep
+for config_file in $(find $DOT -name *.bash -type f); do
+  source $config_file;
+done

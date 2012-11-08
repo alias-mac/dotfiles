@@ -1,0 +1,28 @@
+# Change the [user] section since you are not me :)
+
+[user]
+	name = Filipe Guerra
+	email = alias.mac@gmail.com
+[alias]
+	co = checkout
+	st = status
+	mergeleader = merge --no-ff --no-commit
+	wtf = !$DOT/bin/git-wtf
+[color]
+	branch = auto
+	doff = auto
+	status = auto
+	ui = true
+[core]
+	quotepath = false
+	excludesfile = ~/.gitignore_global
+[apply]
+    whitespace = nowarn
+[difftool]
+	prompt = false
+[mergetool]
+	keepBackup = false
+[help]
+	autocorrect = 1
+[hub]
+    protocol = https
