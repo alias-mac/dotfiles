@@ -8,6 +8,11 @@
 # Run ./set-defaults.sh and you'll be good to go.
 
 ##
+# Better Touch Tool
+##
+defaults write launchOnStartup -bool true
+
+##
 # Terminal
 ##
 
@@ -20,17 +25,32 @@ sleep 1 # Wait a bit to make sure the theme is loaded
 defaults write com.apple.terminal "Default Window Settings" -string "Bond"
 defaults write com.apple.terminal "Startup Window Settings" -string "Bond"
 
-# Enable “focus follows mouse” for Terminal.app and all X11 apps
+# Enable "focus follows mouse" for Terminal.app and all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
 #defaults write com.apple.terminal FocusFollowsMouse -bool true
 #defaults write org.x.X11 wm_ffm -bool true
 
 
-###############################################################################
-# Kill affected applications                                                  #
-###############################################################################
 
-for app in "Terminal"; do
+##
+# Kill affected applications
+##
+
+for app in "BetterTouchTool"; do
     killall "$app" > /dev/null 2>&1
 done
+
+##
+# Open background affected applications
+##
+for app in "BetterTouchTool"; do
+    if [[ -a /Applications/"$app".app ]]
+    then
+        open /Applications/"$app".app
+	fi
+done
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+# Terminal goes at the end
+killall Terminal > /dev/null 2>&1
