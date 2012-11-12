@@ -13,6 +13,13 @@
 defaults write launchOnStartup -bool true
 
 ##
+# iChat
+##
+
+# make it more silent on some events
+osascript "$DOT/osx/iChat-prefs.scpt"
+
+##
 # Terminal
 ##
 
