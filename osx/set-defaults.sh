@@ -8,6 +8,13 @@
 # Run ./set-defaults.sh and you'll be good to go.
 
 ##
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input
+##
+
+# Magic Mouse: enable 2 
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string "TwoButton"
+
+##
 # Better Touch Tool
 ##
 defaults write launchOnStartup -bool true
