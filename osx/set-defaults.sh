@@ -80,8 +80,9 @@ defaults write launchOnStartup -bool true
 # iChat
 ##
 
-# make it more silent on some events
-osascript "$DOT/osx/iChat-prefs.scpt"
+# make it more silent on buddy in/out
+/usr/libexec/PlistBuddy -c "Set :EventActions:BuddyAvailable:PlaySound false" ~/Library/Preferences/com.apple.iChat.plist
+/usr/libexec/PlistBuddy -c "Set :EventActions:BuddyUnavailable:PlaySound false" ~/Library/Preferences/com.apple.iChat.plist
 
 ##
 # Terminal
@@ -107,7 +108,8 @@ defaults write com.apple.terminal "Startup Window Settings" -string "Bond"
 # Kill affected applications
 ##
 
-for app in "Dock" "Finder" "BetterTouchTool"; do
+for app in "Dock" "Finder" "BetterTouchTool" \
+    "Messages" "Transmission" "Twitter"; do
     killall "$app" > /dev/null 2>&1
 done
 
