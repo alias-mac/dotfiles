@@ -158,8 +158,8 @@ defaults write com.apple.terminal "Startup Window Settings" -string "Bond"
 # Kill affected applications
 ##
 
-for app in "Dock" "Finder" "BetterTouchTool" \
-    "Messages" "Transmission" "Twitter"; do
+for app in "BetterTouchTool" "Dock" "Finder" \
+    "Messages" "SystemUIServer" "Transmission" "Twitter"; do
     killall "$app" > /dev/null 2>&1
 done
 
