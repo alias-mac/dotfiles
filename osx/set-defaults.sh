@@ -35,6 +35,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 0
+
 ##
 # Better Touch Tool
 ##
