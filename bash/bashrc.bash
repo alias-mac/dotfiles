@@ -1,5 +1,5 @@
 
-export EDITOR=/usr/bin/vim
+export EDITOR='subl'
 
 # your project folder that we can `w [tab]` to
 export PROJECTS=~/Works
