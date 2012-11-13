@@ -34,6 +34,10 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -
 # Enable full keyboard access for all controls (System Preferences → Keyboard → Keyboard Shortcuts)
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+# Change "Move focus to next window" shortcut to ⌘§
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:51:value:parameters:0 167" ~/Library/Preferences/com.apple.symbolichotkeys.plist 
+# and "Move focus to the widnow drawer" shorcut to ⌥⌘§
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:51:value:parameters:1 10" ~/Library/Preferences/com.apple.symbolichotkeys.plist 
 
 # Disable press-and-hold for keys in favor of key repeat.
 defaults write -g ApplePressAndHoldEnabled -bool false
