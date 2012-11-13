@@ -1,7 +1,7 @@
 
 export EDITOR='subl'
 
-# your project folder that we can `w [tab]` to
+# your project folder
 export PROJECTS=~/Works
 
 # use .localrc for SUPER SECRET CRAP that you don't
