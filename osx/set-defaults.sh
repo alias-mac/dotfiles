@@ -101,9 +101,6 @@ defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 # Empty Trash securely by default
 defaults write com.apple.finder EmptyTrashSecurely -bool true
 
-# Enable AirDrop over Ethernet and on unsupported Macs running Lion
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-
 # Open default on my home folder
 defaults write com.apple.finder NewWindowTargetPath -string "file://localhost${HOME}"
 
