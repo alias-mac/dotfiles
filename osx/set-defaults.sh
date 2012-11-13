@@ -47,6 +47,19 @@ defaults write NSGlobalDomain AppleLanguages -array "en" "pt_PT" "pt"
 #defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 ##
+# Finder
+##
+
+# Finder: Minimize on double click
+defaults write NSGlobalDomain AppleMiniaturizeOnDoubleClick -bool true
+
+# Finder: show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+##
 # Better Touch Tool
 ##
 defaults write launchOnStartup -bool true
@@ -82,7 +95,7 @@ defaults write com.apple.terminal "Startup Window Settings" -string "Bond"
 # Kill affected applications
 ##
 
-for app in "BetterTouchTool"; do
+for app in "Finder" "BetterTouchTool"; do
     killall "$app" > /dev/null 2>&1
 done
 
