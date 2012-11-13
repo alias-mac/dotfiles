@@ -22,3 +22,12 @@ open http://blog.boastr.net
 # Dev Browsers
 open https://www.google.com/intl/en/chrome/browser/
 open http://www.mozilla.org/en-US/firefox
+
+# elasticsearch
+http://www.elasticsearch.org/download/
+
+# node.js
+http://nodejs.org
+
+# Mou.app
+http://mouapp.com
