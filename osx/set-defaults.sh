@@ -38,6 +38,14 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 0
 
+# Set language and text formats
+# Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
+# `Inches`, and `true` with `false`.
+defaults write NSGlobalDomain AppleLanguages -array "en" "pt_PT" "pt"
+#defaults write NSGlobalDomain AppleLocale -string "pt_PT@currency=EUR"
+#defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+#defaults write NSGlobalDomain AppleMetricUnits -bool true
+
 ##
 # Better Touch Tool
 ##
