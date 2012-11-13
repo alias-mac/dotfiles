@@ -8,6 +8,23 @@
 # Run ./set-defaults.sh and you'll be good to go.
 
 ##
+# General
+##
+
+# Menu bar: show TextInput, Displays, User, etc.
+defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Displays.menu" "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu" "/System/Library/CoreServices/Menu Extras/TextInput.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu" "/System/Library/CoreServices/Menu Extras/User.menu"
+
+
+# Set the clock settings
+defaults write com.apple.menuextra.clock DateFormat -string "EE H:mm:ss"
+defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
+defaults write com.apple.menuextra.clock IsAnalog -bool false
+
+# Enable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
+defaults write NSGlobalDomain NSSpellCheckerAutomaticallyIdentifiesLanguages -bool true
+
+##
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ##
 
