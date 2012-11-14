@@ -124,6 +124,9 @@ defaults write launchOnStartup -bool true
 # Prevent Safari from opening ‘safe’ files automatically after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
+# Always restore session after launch on Safari 
+defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+
 # Enable Safari’s debug menu
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
@@ -162,8 +165,8 @@ defaults write com.apple.terminal "Startup Window Settings" -string "Bond"
 # Kill affected applications
 ##
 
-for app in "BetterTouchTool" "Dock" "Finder" \
-    "Messages" "SystemUIServer" "Transmission" "Twitter"; do
+for app in "BetterTouchTool" "Dock" "Finder" "Messages" \
+    "Safari" "SystemUIServer" "Transmission" "Twitter"; do
     killall "$app" > /dev/null 2>&1
 done
 
