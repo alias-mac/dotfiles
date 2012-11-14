@@ -1,6 +1,7 @@
 
 completion=/usr/local/git/contrib/completion/git-completion.bash 
-if [[ -a completion ]]
+
+if [[ -a $completion ]]
 then
-  source completion
+  source $completion
 fi
