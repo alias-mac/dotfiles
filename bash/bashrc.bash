@@ -1,8 +1,8 @@
 
 export EDITOR='subl'
 
-# your project folder
-export PROJECTS=~/Works
+# your projects folder
+export WORKS=~/Works
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
