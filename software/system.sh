@@ -10,3 +10,6 @@ open http://www.skype.com/intl/en/get-skype/
 
 # App cleaner
 open http://www.freemacsoft.net/appcleaner/
+
+# Archives quicklook
+open http://macitbetter.com/BetterZip-Quick-Look-Generator/
