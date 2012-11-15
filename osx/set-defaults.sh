@@ -110,6 +110,24 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://localhost${H
 defaults write launchOnStartup -bool true
 
 ##
+# iCal
+##
+
+# timezone support active by default
+defaults write com.apple.iCal "TimeZone support enabled" -bool true
+# show event times
+defaults write com.apple.iCal "Show time in Month View" -bool true
+# show week numbers by default
+defaults write com.apple.iCal "Show Week Numbers" -bool true
+
+# birthdays on
+defaults write com.apple.iCal "display birthdays calendar" -bool true
+
+# default calendar change (change this to your calendar id)
+defaults write com.apple.iCal "CalDefaultCalendarSelectedByUser" -bool true
+defaults write com.apple.iCal "CalDefaultCalendar" -string "DDDB8B6F-0D52-4C91-88DB-51BA7E8DDA74"
+
+##
 # iChat
 ##
 
@@ -165,7 +183,7 @@ defaults write com.apple.terminal "Startup Window Settings" -string "Bond"
 # Kill affected applications
 ##
 
-for app in "BetterTouchTool" "Dock" "Finder" "Messages" \
+for app in "BetterTouchTool" "Dock" "Finder" "iCal" "Messages" \
     "Safari" "SystemUIServer" "Transmission" "Twitter"; do
     killall "$app" > /dev/null 2>&1
 done
