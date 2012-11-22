@@ -8,6 +8,9 @@
 	st = status
 	mergeleader = merge --no-ff --no-commit
 	wtf = !$DOT/bin/git-wtf
+	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+    squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+    ri = rebase --interactive --autosquash
 [color]
 	branch = auto
 	doff = auto
