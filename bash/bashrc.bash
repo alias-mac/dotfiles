@@ -1,5 +1,5 @@
 
-export EDITOR='subl'
+export EDITOR='subl -w'
 
 # your projects folder
 export WORKS=~/Works
