@@ -28,6 +28,9 @@ defaults write NSGlobalDomain NSSpellCheckerAutomaticallyIdentifiesLanguages -bo
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ##
 
+# Trackpad app exposé swipe down
+defaults write com.apple.dock showAppExposeGestureEnabled -bool true
+
 # Magic Mouse: enable 2nd mouse click (System Preferences → Mouse)
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string "TwoButton"
 
