@@ -6,6 +6,10 @@
 #   https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 #
 # Run ./set-defaults.sh and you'll be good to go.
+#
+# more information about other settings can be found:
+# 	http://secrets.blacktree.com
+#
 
 ##
 # General
@@ -141,6 +145,9 @@ defaults write com.apple.iCal "CalDefaultCalendar" -string "DDDB8B6F-0D52-4C91-8
 ##
 # Safari & WebKit
 ##
+
+# Show status bar
+defaults write com.apple.Safari ShowStatusBar -boolean true
 
 # Prevent Safari from opening ‘safe’ files automatically after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
