@@ -20,7 +20,7 @@ defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreS
 
 
 # Set the clock settings (System Preferences → Date & Time → Clock)
-defaults write com.apple.menuextra.clock DateFormat -string "EE H:mm:ss"
+defaults write com.apple.menuextra.clock DateFormat -string "EEE H:mm:ss"
 defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
 defaults write com.apple.menuextra.clock IsAnalog -bool false
 
@@ -60,6 +60,13 @@ defaults write NSGlobalDomain AppleLanguages -array "en" "pt_PT" "pt"
 #defaults write NSGlobalDomain AppleLocale -string "pt_PT@currency=EUR"
 #defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 #defaults write NSGlobalDomain AppleMetricUnits -bool true
+
+# Set system time to HH:mm (24h format)
+/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings dict' ~/Library/Preferences/.GlobalPreferences.plist
+/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:1 string "HH:mm"' ~/Library/Preferences/.GlobalPreferences.plist
+/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:2 string "HH:mm:ss"' ~/Library/Preferences/.GlobalPreferences.plist
+/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:3 string "HH:mm:ss z"' ~/Library/Preferences/.GlobalPreferences.plist
+/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:4 string "HH:mm:ss zzzz"' ~/Library/Preferences/.GlobalPreferences.plist
 
 ##
 # Dock
