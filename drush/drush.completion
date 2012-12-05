@@ -1,0 +1,4 @@
+
+if [ -f $DOT/drush/.drush_bashrc ] ; then
+  . $DOT/drush/.drush_bashrc
+fi
