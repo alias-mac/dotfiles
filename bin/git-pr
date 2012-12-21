@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# A very slightly quicker way to test a PR
+#
+# $1 - the pull request number
+#
+# Examples
+#
+#   git pr 8888
+#
+
+git fetch upstream pull/"$1"/head:pr/"$1"
+git checkout pr/"$1"
