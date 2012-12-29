@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+#
+# Prints (aka var_dumps) the session data from a given file
+# 
+# $1 - the session id that you want to read
+#
+# Examples
+#
+#   php-session-print sess_d39c8c92-0240-805c-6a95-50de5909c9cb
+#
+
+try {
+    // not needed, but lets make it more secure :)
+    if ('cli' !== php_sapi_name()) {
+        throw new Exception('Not running from command line!');
+    }
+
+    if (!isset($argv[1]))
+    {
+        throw new Exception('You must provide the session data file.');
+    }
+
+
+    $path = session_save_path();
+    $file = realpath($path . $argv[1]);
+
+    $contents = file_get_contents($file);
+
+    session_start();
+    if (!session_decode($contents)) {
+        throw new Exception("Unable to load the session from '$file'.");
+    }
+
+    var_dump($_SESSION);
+    session_destroy();
+
+} catch (Exception $e) {
+    die($e->getMessage());
+}
