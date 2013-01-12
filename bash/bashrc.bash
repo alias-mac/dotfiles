@@ -11,9 +11,13 @@ then
   source ~/.localrc
 fi
 
-# autocomplete for sudo
-complete -c -f command sudo
-# autocomplete for ssh hosts
-complete -o default -o nospace -W "$(grep "^Host" $HOME/.ssh/config | grep -v “[?*]” | cut -d" " -f2)" scp sftp ssh
+# history like it should always be (no duplicate entries)
+export HISTCONTROL=ignoredups:erasedups
+# big big history
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+# append to history, don't overwrite it
+shopt -s histappend
 
-alias mkpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 10`'
+# Save and reload the history after each command finishes
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
