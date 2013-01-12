@@ -119,6 +119,27 @@ defaults write com.apple.finder EmptyTrashSecurely -bool true
 defaults write com.apple.finder NewWindowTargetPath -string "file://localhost${HOME}"
 
 ##
+# Address Book
+##
+
+# Show first name before last name
+defaults write com.apple.AddressBook ABNameDisplay -int 0
+
+# Sort by First name and then Last name
+defaults write com.apple.AddressBook ABNameSortingFormat -string "sortingFirstName sortingLastName"
+
+# Show Nickname, JobTitle, Department
+defaults write com.apple.AddressBook ABNicknameVisible -int 1
+defaults write com.apple.AddressBook ABJobTitleVisible -int 1
+defaults write com.apple.AddressBook ABDepartmentVisible -int 1
+
+# Show Related Names, Birthday and other dates on templates
+defaults write com.apple.AddressBook ABBirthDayVisible -int 1
+defaults write com.apple.AddressBook ABDatesVisible -int 1
+defaults write com.apple.AddressBook ABRelatedRecordsVisible -int 1
+defaults write com.apple.AddressBook ABSocialProfilesVisible -bool true
+
+##
 # Better Touch Tool
 ##
 defaults write launchOnStartup -bool true
