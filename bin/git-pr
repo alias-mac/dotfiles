@@ -9,5 +9,8 @@
 #   git pr 8888
 #
 
+if [[ $(git branch | grep pr/"$1") ]]; then
+    git branch -D pr/"$1"
+fi
 git fetch upstream pull/"$1"/head:pr/"$1"
 git checkout pr/"$1"
