@@ -1,9 +1,23 @@
 #!/bin/bash
 #
-# This command prints all the PSR-2 issues for all the files in git staged area.
+# This command check for PSR-2 issues for all the files in git staged area.
+# If you pass a branch name, it will also check for PSR-2 issues found on the
+# current branch against the branch you pass.
+#
+# E.g.: if you want to see what code is messed up against the master use:
+# git psr2 master
+# 
 # Requires PHP Code Sniffer (phpcs).
 #
 
-standard="PSR2" 
+standard="PSR2"
+rules="codesize,controversial,design,unusedcode,naming"
+format="text"
+
+if [[ $1 ]]; then
+    git diff --name-only "$1"... | awk -v s=$standard '{print("phpcs --standard="s" "$1)}' | bash
+    git diff --name-only "$1"... | awk -v r=$rules -v f=$format '{print("phpmd "$1" "f" "r)}' | bash
+fi
 
 git diff --cached --name-status --diff-filter=ACM | sed 's|.[^I]||' | awk -v s=$standard '{print("phpcs --standard="s" "$1)}' | bash
+git diff --cached --name-status --diff-filter=ACM | sed 's|.[^I]||' | awk -v r=$rules -v f=$format '{print("phpmd "$1" "f" "r)}' | bash
