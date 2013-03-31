@@ -1,4 +1,8 @@
 
+if ! drush_loc="$(type -p "$drush")" || [ -z "$drush_loc" ]; then
+  return
+fi
+
 if [ -f $DOT/drush/.drush_bashrc ] ; then
   . $DOT/drush/.drush_bashrc
 fi
