@@ -4,4 +4,13 @@ completion=/usr/local/git/contrib/completion/git-completion.bash
 if [[ -a $completion ]]
 then
   source $completion
+  return
+fi
+
+completion=/usr/local/etc/bash_completion.d/git-completion.bash
+
+if [[ -a $completion ]]
+then
+  source $completion
+  return
 fi
