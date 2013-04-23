@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Promotes a local topic branch to a remote tracking branch of the same name
+# in origin.
+#
+
+current=$(basename $(git symbolic-ref HEAD))
+
+git push --set-upstream origin $current
