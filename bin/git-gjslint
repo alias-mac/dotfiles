@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# This command check for JS issues for all the files in git staged area.
+# If you pass a branch name, it will also check for JS issues found on the
+# current branch against the branch you pass.
+#
+# E.g.: if you want to see what js code is messed up against the master use:
+# git gjslint master
+# 
+# Requires Google JS Linter (gjslint).
+#
+
+# Checks for JS code issues.
+# Accepts 1 optional param which is the branch we want to check code against
+# if the param is passed will check for committed code up to that branch
+# if no param is passed, check for staged code
+function __open_war_checkjs() {
+
+    local standard="PSR2"
+    local rules="codesize,controversial,design,unusedcode,naming"
+    local format="text"
+
+    local gitDiffParams="--name-only --diff-filter=ACM"
+
+    if [[ $1 ]]; then
+        gitDiffParams="$gitDiffParams $1..."
+    else
+        gitDiffParams="$gitDiffParams --cached"
+    fi
+
+    # uncomment if you want to run the code checker on each file changed
+    # (slower in full report but gives first failures faster)
+    #eval "git diff $gitDiffParams | grep -e '.js' | awk '{print(\"gjslint \"\$1)}' | bash"
+    # this will test all changed files in 1 report (faster for full report)
+    eval "git diff $gitDiffParams | awk '{print \" \"}1;END{print \"\"}' ORS=\"\" | awk '{print(\"gjslint \"\$0)}' | bash"
+}
+
+# check for already committed code if branch argument is passed
+if [[ $1 ]]; then
+    __open_war_checkjs $1
+fi
+# always check for staged code
+__open_war_checkjs
