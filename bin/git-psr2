@@ -1,23 +1,49 @@
 #!/bin/bash
 #
-# This command check for PSR-2 issues for all the files in git staged area.
-# If you pass a branch name, it will also check for PSR-2 issues found on the
+# This command check for PHP issues for all the files in git staged area.
+# If you pass a branch name, it will also check for PHP issues found on the
 # current branch against the branch you pass.
 #
-# E.g.: if you want to see what code is messed up against the master use:
+# E.g.: if you want to see what php code is messed up against the master use:
 # git psr2 master
 # 
 # Requires PHP Code Sniffer (phpcs).
 #
 
-standard="PSR2"
-rules="codesize,controversial,design,unusedcode,naming"
-format="text"
+# Checks for PHP code issues.
+# Accepts 1 optional param which is the branch we want to check code against
+# if the param is passed will check for committed code up to that branch
+# if no param is passed, check for staged code
+function __open_war_checkphp() {
 
+    local standard="PSR2"
+    local rules="codesize,controversial,design,unusedcode,naming"
+    local format="text"
+
+    local gitDiffParams="--name-only --diff-filter=ACM"
+
+    if [[ $1 ]]; then
+        gitDiffParams="$gitDiffParams $1..."
+    else
+        gitDiffParams="$gitDiffParams --cached"
+    fi
+
+    # php lint me first
+    eval "git diff $gitDiffParams | grep -e '.php' -e '.module' | awk '{print(\"php -l \"\$1)}' | bash"
+
+    # uncomment if you want to run the code checker on each file changed
+    # (slower in full report but gives first failures faster)
+    # eval "git diff $gitDiffParams | awk -v s=$standard '{print(\"phpcs --standard=\"s\" \"\$1)}' | bash"
+    # eval "git diff $gitDiffParams | awk -v r=$rules -v f=$format '{print(\"phpmd \"\$1\" \"f\" \"r)}' | bash"
+
+    # this will test all changed files in 1 report (faster for full report)
+    eval "git diff $gitDiffParams | awk '{print \" \"}1;END{print \"\"}' ORS=\"\" | awk -v s=$standard '{print(\"phpcs --standard=\"s\" \"\$0)}' | bash"
+    eval "git diff $gitDiffParams | awk '{print \" \"}1;END{print \"\"}' ORS=\"\" | awk -v r=$rules -v f=$format '{print(\"phpmd \"\$1\" \"f\" \"r)}' | bash"
+}
+
+# check for already committed code if branch argument is passed
 if [[ $1 ]]; then
-    git diff --name-only "$1"... | awk -v s=$standard '{print("phpcs --standard="s" "$1)}' | bash
-    git diff --name-only "$1"... | awk -v r=$rules -v f=$format '{print("phpmd "$1" "f" "r)}' | bash
+    __open_war_checkphp $1
 fi
-
-git diff --cached --name-status --diff-filter=ACM | sed 's|.[^I]||' | awk -v s=$standard '{print("phpcs --standard="s" "$1)}' | bash
-git diff --cached --name-status --diff-filter=ACM | sed 's|.[^I]||' | awk -v r=$rules -v f=$format '{print("phpmd "$1" "f" "r)}' | bash
+# always check for staged code
+__open_war_checkphp

@@ -6,4 +6,4 @@
 
 standard="PSR2"
 
-phpcs --standard="$standard" $1
+phpcs --standard="$standard" $*
