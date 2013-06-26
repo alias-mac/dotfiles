@@ -16,9 +16,7 @@
 # if no param is passed, check for staged code
 function __open_war_checkjs() {
 
-    local standard="PSR2"
-    local rules="codesize,controversial,design,unusedcode,naming"
-    local format="text"
+    local config="--flagfile=~/.gjslint-config"
 
     local gitDiffParams="--name-only --diff-filter=ACM"
 
@@ -32,7 +30,7 @@ function __open_war_checkjs() {
     # (slower in full report but gives first failures faster)
     #eval "git diff $gitDiffParams | grep -e '.js' | awk '{print(\"gjslint \"\$1)}' | bash"
     # this will test all changed files in 1 report (faster for full report)
-    eval "git diff $gitDiffParams | awk '{print \" \"}1;END{print \"\"}' ORS=\"\" | awk '{print(\"gjslint \"\$0)}' | bash"
+    eval "git diff $gitDiffParams | awk '{print \" \"}1;END{print \"\"}' ORS=\"\" | awk -v c=$config '{print(\"gjslint \"c\" \"\$0)}' | bash"
 }
 
 # check for already committed code if branch argument is passed
