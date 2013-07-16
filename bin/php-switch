@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# This command will switch php versions (from 5.3 to 5.4 and vice versa)
+# E.g.:
+# php-switch
+
+# Find the current php version
+script="if ( strpos(phpversion(), '5.3') !== false ) { echo 'php53'; } else { echo 'php54'; }"
+
+# Check the current version (useful if this script is run for the first time)
+value=$(php -r "$script")
+
+# Change the php version using brew, from php53 to php54
+if [ $value == "php53" ]; then
+	brew unlink php53 > /dev/null 2>&1
+	brew link php54 > /dev/null 2>&1
+	sudo ln -sf `brew list php54 | grep libphp` /usr/local/lib/libphp5.so
+	echo "Switched to 5.4."
+
+# if php54 is on, switch to php53
+elif [ $value == "php54" ]; then
+	brew unlink php54 > /dev/null 2>&1
+	brew link php53 > /dev/null 2>&1
+	sudo ln -sf `brew list php53 | grep libphp` /usr/local/lib/libphp5.so
+	echo "Switched to 5.3."
+fi
+
+echo "Restarting Apache."
+
+# Restart apache
+sudo apachectl -k restart > /dev/null 2>&1
+
+echo "Done!"
