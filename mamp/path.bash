@@ -1,4 +1,8 @@
 
+if [[ ! -d /Applications/MAMP/bin/php/ ]]; then
+	return
+fi
+
 # change here for the 5.x version you want
 phpMajorVersion="5.3"
 
