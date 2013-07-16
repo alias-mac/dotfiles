@@ -31,3 +31,9 @@ open http://nodejs.org
 
 # Mou.app
 open http://mouapp.com
+
+# Please install home brew for me: http://mxcl.github.io/homebrew/
+ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+
+# wget is always a cool feature :)
+brew install wget
