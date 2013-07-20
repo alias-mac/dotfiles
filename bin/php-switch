@@ -28,6 +28,6 @@ fi
 echo "Restarting Apache."
 
 # Restart apache
-sudo apachectl -k restart > /dev/null 2>&1
+sudo apachectl restart > /dev/null 2>&1
 
 echo "Done!"
