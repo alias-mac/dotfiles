@@ -1,8 +1,11 @@
+#
+# Provide Drush autocomplete
+#
 
-if ! drush_loc="$(type -p "$drush")" || [ -z "$drush_loc" ]; then
+completion=/usr/local/etc/bash_completion.d/drush
+
+if [[ -a $completion ]]
+then
+  source $completion
   return
-fi
-
-if [ -f $DOT/drush/.drush_bashrc ] ; then
-  . $DOT/drush/.drush_bashrc
 fi
