@@ -3,7 +3,7 @@
 #
 
 # LAMP
-open http://www.mamp.info/en/index.html
+# open http://www.mamp.info/en/index.html (use the one provided in brew :))
 open http://www.sequelpro.com/download
 
 # IDEs
@@ -21,13 +21,8 @@ open http://blog.boastr.net
 
 # Dev Browsers
 open https://www.google.com/intl/en/chrome/browser/
+open https://www.google.com/intl/en/chrome/browser/canary.html
 open http://www.mozilla.org/en-US/firefox
-
-# elasticsearch
-open http://www.elasticsearch.org/download/
-
-# node.js
-open http://nodejs.org
 
 # Mou.app
 open http://mouapp.com
@@ -37,3 +32,11 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 
 # wget is always a cool feature :)
 brew install wget
+
+# node.js
+brew install node
+# npm
+curl https://npmjs.org/install.sh | sh
+
+# elasticsearch
+brew install elasticsearch
