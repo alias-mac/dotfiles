@@ -31,7 +31,5 @@
 	keepBackup = false
 [help]
 	autocorrect = 1
-[hub]
-    protocol = https
 [push]
 	default = simple
