@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# Quick way to get last changed files in a given time
+#
+# $1 - since
+#
+# Examples
+#
+#   git ldiff "2 days ago"
+#
+
+git log --pretty=format: --name-only --since="$1" | sort | uniq
