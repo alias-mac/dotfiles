@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Quick way to get changed files from a particular feature branch
+#
+# $1 - master branch
+#
+# Examples
+#
+#   git lchange upstream/master
+#   git lchange master
+#
+branch="upstream/master"
+if [[ $1 ]]; then
+    branch = $1
+fi
+git log --pretty=format: --name-only $branch.. | sort | uniq
