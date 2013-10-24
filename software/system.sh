@@ -3,7 +3,7 @@
 #
 
 # Trim enabler for SSD drives only
-open http://www.groths.org/?page_id=322
+open http://www.groths.org/software/trimenabler/
 
 # Skype
 open http://www.skype.com/intl/en/get-skype/
