@@ -248,6 +248,10 @@ defaults write com.twitter.twitter-mac ShowFullNames -bool true
 # Hide the app in the background if it’s not the front-most window
 defaults write com.twitter.twitter-mac HideInBackground -bool true
 
+##
+# GPG tools (Mail)
+##
+defaults write org.gpgtools.gpgmail DefaultSecurityMethod -int 2
 
 ##
 # Kill affected applications
