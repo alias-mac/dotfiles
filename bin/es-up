@@ -1,2 +1,0 @@
-
-exec $WORKS/elasticsearch/bin/elasticsearch -f
