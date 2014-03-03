@@ -15,7 +15,7 @@
     squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
     ri = rebase --interactive --autosquash
     f = fetch --prune
-    fa = fetch --all --prune
+    fa = fetch --all --prune --tags
 [color]
 	branch = auto
 	doff = auto
