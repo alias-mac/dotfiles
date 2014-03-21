@@ -1,5 +1,8 @@
 
-export EDITOR='subl -w'
+type -P vi &>/dev/null && export EDITOR='vi'
+type -P vim &>/dev/null && export EDITOR='vim'
+type -P subl &>/dev/null && export EDITOR='subl -w'
+type -P atom &>/dev/null && export EDITOR='atom --wait'
 
 # your projects folder
 export WORKS=~/Works
