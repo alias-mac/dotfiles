@@ -12,10 +12,10 @@
 	lf = log --summary --no-merges --show-signature
 	wtf = !$DOT/bin/git-wtf
 	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
-    squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
-    ri = rebase --interactive --autosquash
-    f = fetch --prune
-    fa = fetch --all --prune --tags
+	squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+	ri = rebase --interactive --autosquash
+	f = fetch --prune
+	fa = fetch --all --prune --tags
 [color]
 	branch = auto
 	doff = auto
@@ -25,7 +25,7 @@
 	quotepath = false
 	excludesfile = ~/.gitignore_global
 [apply]
-    whitespace = nowarn
+	whitespace = nowarn
 [difftool]
 	prompt = false
 [mergetool]
@@ -36,7 +36,7 @@
 	default = simple
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
