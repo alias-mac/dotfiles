@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Create a ram disk with a GB size defined on first param (defaults to 2GB)
+##
+
+name='RAM'
+path="/Volumes/$name"
+
+mount | grep -q $path
+if [ $? == 0 ]; then
+    echo "Using existing RAM disk `mount | grep $path | cut -d ' ' -f 1`..."
+    exit
+fi
+
+diskSize=2
+if [[ $1 ]]; then
+    size = $1
+fi
+
+# Size in block size
+diskSize=$(($diskSize * 1024 * 2048))
+diskutil erasevolume 'Case-sensitive HFS+' $name `hdiutil attach -nomount ram://$diskSize`
