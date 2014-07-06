@@ -1,6 +1,7 @@
 
-if [[ ! -d /Applications/MAMP/bin/php/ ]]; then
-	return
+if [ ! -d /Applications/MAMP/bin/php/ ]
+then
+  return
 fi
 
 # change here for the 5.x version you want
