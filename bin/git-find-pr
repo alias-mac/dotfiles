@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# A very quick way to check search for the PR that contains a commit.
+# Requires hub to display the link for easy access
+#
+# $1 - the commit hash
+#
+# Examples
+#
+#   git find-pr 51324
+#
+
+COMMIT=$(git log --merges --ancestry-path --oneline $1..master | grep 'pull request' | tail -n1)
+echo $COMMIT
+PR=$(echo $COMMIT | awk '{print $5}' | cut -c2-)
+
+echo "$(hub browse -u)/pull/$PR"
