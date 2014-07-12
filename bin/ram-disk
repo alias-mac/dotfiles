@@ -1,10 +1,18 @@
 #!/bin/sh
 #
-# Create a ram disk with a GB size defined on first param (defaults to 2GB)
+# Create a ram disk in the specified path and name with a GB size given.
+# Defaults to:
+#   path: /Volumes/RAM
+#   name: RAM
+#   size: 2GB
+#
+# Examples:
+#   ram-disk /tmp/my-path/to-ram RAM 4
+#   ram-disk ~/Sites/builds
 ##
 
-name='RAM'
-path="/Volumes/$name"
+name=${2:-'RAM'}
+path=${1:-"/Volumes/$name"}
 
 mount | grep -q $path
 if [ $? == 0 ]; then
@@ -12,11 +20,12 @@ if [ $? == 0 ]; then
     exit
 fi
 
-diskSize=2
-if [[ $1 ]]; then
-    size = $1
-fi
+diskSize=${3:-2}
 
 # Size in block size
 diskSize=$(($diskSize * 1024 * 2048))
-diskutil erasevolume 'Case-sensitive HFS+' $name `hdiutil attach -nomount ram://$diskSize`
+devDisk=`hdiutil attach -nomount ram://$diskSize`
+
+newfs_hfs -s -v $name $devDisk
+mkdir -p $path
+mount -o noatime -t hfs $devDisk $path
