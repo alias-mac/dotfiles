@@ -1,0 +1,5 @@
+#
+# Provide grunt completion
+#
+
+eval "$(grunt --completion=bash)"

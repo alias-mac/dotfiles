@@ -1,0 +1,5 @@
+#
+# Provide npm completion
+#
+
+eval "$(npm completion)"
