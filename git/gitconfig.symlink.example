@@ -1,0 +1,46 @@
+#
+# Sample gitconfig
+#
+
+[user]
+  name = AUTHORNAME
+  email = AUTHOREMAIL
+[credential]
+  helper = GIT_CREDENTIAL_HELPER
+[alias]
+  co = checkout
+  st = status
+  mergeleader = merge --no-ff --no-commit
+  l = log --oneline --decorate --graph --show-signature
+  la = log --oneline --decorate --graph --all --show-signature
+  lf = log --summary --no-merges --show-signature
+  wtf = !$DOT/bin/git-wtf
+  fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+  squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+  ri = rebase --interactive --autosquash
+  f = fetch --prune
+  fa = fetch --all --prune --tags
+count = shortlog -sn
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+[core]
+  quotepath = false
+  excludesfile = ~/.gitignore_global
+  editor = vim
+[apply]
+  whitespace = nowarn
+[mergetool]
+  keepBackup = false
+[difftool]
+  prompt = false
+[help]
+  autocorrect = 1
+[push]
+  # See `git help config` (search for push.default)
+  # for more information on different options of the below setting.
+  #
+  # Setting to git 2.0 default to surpress warning message
+  default = simple
