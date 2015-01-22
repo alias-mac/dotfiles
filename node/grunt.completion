@@ -1,5 +1,7 @@
 #
-# Provide grunt completion
+# Provide grunt completion if installed
 #
+
+type -P grunt &>/dev/null || return
 
 eval "$(grunt --completion=bash)"
