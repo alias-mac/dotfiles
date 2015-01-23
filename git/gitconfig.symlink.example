@@ -20,7 +20,7 @@
   ri = rebase --interactive --autosquash
   f = fetch --prune
   fa = fetch --all --prune --tags
-count = shortlog -sn
+  count = shortlog -sn
 [color]
   diff = auto
   status = auto
@@ -29,7 +29,7 @@ count = shortlog -sn
 [core]
   quotepath = false
   excludesfile = ~/.gitignore_global
-  editor = vim
+  # editor = vim
 [apply]
   whitespace = nowarn
 [mergetool]
@@ -42,5 +42,5 @@ count = shortlog -sn
   # See `git help config` (search for push.default)
   # for more information on different options of the below setting.
   #
-  # Setting to git 2.0 default to surpress warning message
+  # Setting to git 2.0 default to suppress warning message
   default = simple
