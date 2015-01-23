@@ -17,3 +17,6 @@ type -P brew &>/dev/null ||
 
 # Install homebrew packages
 brew install grc wget #coreutils spark
+
+# Replace git with the brew version (always latest)
+brew install git
