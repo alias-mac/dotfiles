@@ -23,20 +23,3 @@ open http://blog.boastr.net
 open https://www.google.com/intl/en/chrome/browser/
 open https://www.google.com/intl/en/chrome/browser/canary.html
 open http://www.mozilla.org/en-US/firefox
-
-# Mou.app
-open http://mouapp.com
-
-# Please install home brew for me: http://mxcl.github.io/homebrew/
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-
-# wget is always a cool feature :)
-brew install wget
-
-# node.js
-brew install node
-# npm
-curl https://npmjs.org/install.sh | sh
-
-# elasticsearch
-brew install elasticsearch
