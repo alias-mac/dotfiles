@@ -42,9 +42,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Change "Move focus to next window" shortcut to ⌘§
-/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:51:value:parameters:0 167" ~/Library/Preferences/com.apple.symbolichotkeys.plist 
+#/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:51:value:parameters:0 167" ~/Library/Preferences/com.apple.symbolichotkeys.plist 
 # and "Move focus to the widnow drawer" shorcut to ⌥⌘§
-/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:51:value:parameters:1 10" ~/Library/Preferences/com.apple.symbolichotkeys.plist 
+#/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:51:value:parameters:1 10" ~/Library/Preferences/com.apple.symbolichotkeys.plist 
 
 # Disable press-and-hold for keys in favor of key repeat.
 defaults write -g ApplePressAndHoldEnabled -bool false
@@ -175,8 +175,8 @@ defaults write com.apple.iCal "CalDefaultCalendar" -string "DDDB8B6F-0D52-4C91-8
 ##
 
 # make it more silent on buddy in/out
-/usr/libexec/PlistBuddy -c "Set :EventActions:BuddyAvailable:PlaySound false" ~/Library/Preferences/com.apple.iChat.plist
-/usr/libexec/PlistBuddy -c "Set :EventActions:BuddyUnavailable:PlaySound false" ~/Library/Preferences/com.apple.iChat.plist
+#/usr/libexec/PlistBuddy -c "Set :EventActions:BuddyAvailable:PlaySound false" ~/Library/Preferences/com.apple.iChat.plist
+#/usr/libexec/PlistBuddy -c "Set :EventActions:BuddyUnavailable:PlaySound false" ~/Library/Preferences/com.apple.iChat.plist
 
 ##
 # Safari & WebKit
