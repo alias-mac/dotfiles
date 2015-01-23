@@ -15,8 +15,8 @@ fi
 type -P brew &>/dev/null ||
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
 
-# Install homebrew packages
-brew install grc wget #coreutils spark
-
 # Replace git with the brew version (always latest)
 brew install git
+
+# Install homebrew packages
+brew install grc wget hub #coreutils spark
