@@ -17,9 +17,9 @@ then
   fi
 
   user ' - What is your github author name?'
-  read -e git_authorname
+  read -e git_authorname < /dev/tty
   user ' - What is your github author email?'
-  read -e git_authoremail
+  read -e git_authoremail < /dev/tty
 
   sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
 
