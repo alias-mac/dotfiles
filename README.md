@@ -29,9 +29,7 @@ Everything is configured and tweaked within `~/.dotfiles`, though.
 
 The main file you'll want to change right off the bat is `bash/bashrc.symlink`,
 which sets up a few paths that'll be different on your particular machine.
-
-You'll also want to change `git/gitconfig.symlink`, which will set you up as
-committing as Filipe Guerra. You probably don't want that.
+If you prefer you can use the `~/.localrc` to override them per instance.
 
 ## Topical
 
