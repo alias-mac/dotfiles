@@ -183,7 +183,7 @@ defaults write com.apple.iCal "CalDefaultCalendar" -string "DDDB8B6F-0D52-4C91-8
 ##
 
 # Show status bar
-defaults write com.apple.Safari ShowStatusBar -boolean true
+defaults write com.apple.Safari ShowStatusBar -bool true
 
 # Prevent Safari from opening ‘safe’ files automatically after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
