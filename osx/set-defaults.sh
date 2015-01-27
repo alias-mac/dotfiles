@@ -168,7 +168,7 @@ defaults write com.apple.iCal "display birthdays calendar" -bool true
 
 # default calendar change (change this to your calendar id)
 defaults write com.apple.iCal "CalDefaultCalendarSelectedByUser" -bool true
-defaults write com.apple.iCal "CalDefaultCalendar" -string "DDDB8B6F-0D52-4C91-88DB-51BA7E8DDA74"
+defaults write com.apple.iCal "CalDefaultCalendar" -string "5E11650F-1FBB-4725-84F7-7A5A5A485735"
 
 ##
 # iChat
