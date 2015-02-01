@@ -277,5 +277,4 @@ done
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 
-# Terminal goes at the end
-killall Terminal > /dev/null 2>&1
+echo "Terminal has been updated. Please close it and open it again."
