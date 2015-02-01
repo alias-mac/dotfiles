@@ -16,3 +16,11 @@ if [ ssh_login ]
 then
   sudo systemsetup -setremotelogin on
 fi
+
+user ' - Do you want to enable File sharing?'
+read -n 1 afp
+
+if [ afp ]
+then
+  sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.AppleFileServer.plist
+fi
