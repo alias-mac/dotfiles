@@ -19,4 +19,4 @@ type -P brew &>/dev/null ||
 brew install git
 
 # Install homebrew packages
-brew install grc wget hub #coreutils spark
+brew install grc wget hub gist #coreutils spark
