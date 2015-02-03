@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e 
+
+root="$DOTPREF/$(basename "$0")"
+
+install_preferences () {
+  
+  local overwrite_all=false backup_all=false skip_all=false
+
+  link_file "$root/com.sequelpro.SequelPro.plist" "$HOME/Library/Preferences/com.sequelpro.SequelPro.plist"
+  link_file "$root/Favorites.plist" "$HOME/Library/Application Support/Sequel Pro/Data/Favorites.plist"
+}
+
+install_preferences
+
+killall cfprefsd
