@@ -20,3 +20,6 @@ brew install git
 
 # Install homebrew packages
 brew install grc wget hub gist #coreutils spark
+
+# Required ot use notify functions
+brew install terminal-notifier 
