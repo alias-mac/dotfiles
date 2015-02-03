@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Sets OS X defaults by running $DOT/osx/set-defaults.sh.
+
+exec $DOT/osx/link-prefs.sh $@
