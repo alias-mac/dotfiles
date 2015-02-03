@@ -5,14 +5,7 @@ type -P subl &>/dev/null && export EDITOR='subl -w'
 type -P atom &>/dev/null && export EDITOR='atom --wait'
 
 # your projects folder
-export WORKS=~/Works
-
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
+export PROJECTS=~/Code
 
 # history like it should always be (no duplicate entries)
 export HISTCONTROL=ignoredups:erasedups
@@ -25,14 +18,19 @@ shopt -s histappend
 # Save and reload the history after each command finishes
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-function notify() {
-  local title="$1"
-  local subtitle="$2"
-  shift 2
-  terminal-notifier -activate com.googlecode.iterm2 -title "$title" -subtitle "$subtitle" -message "$*"
-}
+# load all functions
+if [[ -d $DOT/functions/ ]]
+then
+    for file in `ls $DOT/functions/`
+    do
+        source $DOT/functions/$file
+    done
+fi
 
-function notifyAndSay() {
-  notify "$@"
-  say "$@"
-}
+
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
