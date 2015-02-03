@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -e
+
+root="$DOTPREF/$(basename "$0")"
+
+install_preferences () {
+  
+  local overwrite_all=false backup_all=false skip_all=false
+
+  for src in $(find "$DOTPREF/" -maxdepth 1 -name 'widget-*')
+  do
+    dst="$HOME/Library/Preferences/$(basename "${src}")"
+    link_file "$src" "$dst"
+  done
+
+  link_file "$root/com.apple.dashboard.plist" "$HOME/Library/Preferences/com.apple.dashboard.plist"
+  link_file "$root/com.apple.dashboard.client.plist" "$HOME/Library/Preferences/com.apple.dashboard.client.plist"
+
+  # Link extra widgets that were downloaded just for me
+  link_file "$root/Widgets" "$HOME/Library/Widgets"
+}
+
+install_preferences
+
+killall "Dock" > /dev/null 2>&1
