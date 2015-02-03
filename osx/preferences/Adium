@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+root="$DOTPREF/$(basename "$0")"
+
+install_preferences () {
+  
+  local overwrite_all=false backup_all=false skip_all=false
+
+  link_file "$root/com.adiumX.adiumX.plist" "$HOME/Library/Preferences/com.adiumX.adiumX.plist"
+  link_file "$root/Adium 2.0" "$HOME/Library/Application Support/Adium 2.0"
+}
+
+install_preferences
