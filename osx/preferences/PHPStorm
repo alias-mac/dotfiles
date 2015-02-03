@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+root="$DOTPREF/$(basename "$0")"
+
+install_preferences () {
+  
+  local overwrite_all=false backup_all=false skip_all=false
+
+  link_file "$root/WebIde80" "$HOME/Library/Preferences/WebIde80"
+}
+
+install_preferences
