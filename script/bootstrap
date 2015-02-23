@@ -89,8 +89,8 @@ link_file () {
 
   if [ "$skip" != "true" ]  # "false" or empty
   then
-    ln -s "$src" "$dest"
-    success "linked $src to $dest"
+    ln -s "$src" "$dst"
+    success "linked $src to $dst"
   fi
 }
 
