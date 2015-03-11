@@ -19,7 +19,14 @@ type -P brew &>/dev/null ||
 brew install git
 
 # Install homebrew packages
-brew install grc wget hub gist #coreutils spark
+brew install grc wget hub gist #spark
 
-# Required ot use notify functions
+# Good for gnu utils
+brew install coreutils
+
+# Required to use notify functions
 brew install terminal-notifier 
+
+# Add file command from gnu
+brew install file-formula
+ln -s `brew --prefix file-formula`/bin/file `brew --prefix`/bin/gfile
