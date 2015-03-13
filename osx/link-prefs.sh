@@ -121,7 +121,7 @@ link_file () {
 
 export -f link_file
 
-info 'installing preferences'
+inform 'installing preferences'
 
 find "$DOT/osx/preferences/" -type f | while read installer ; do bash -c "${installer}" ; done
 

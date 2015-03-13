@@ -8,7 +8,7 @@
 
 if ! [ -f git/gitconfig.symlink ]
 then
-  info 'setup gitconfig'
+  inform 'setup gitconfig'
 
   git_credential='cache'
   if [ "$(uname -s)" == "Darwin" ]
