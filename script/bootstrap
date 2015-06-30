@@ -12,7 +12,7 @@ echo ''
 source $DOTFILES_ROOT/functions/interaction
 
 # export those interaction functions to be used by other install scripts
-export -f info user success fail
+export -f inform user success fail
 
 link_files () {
   ln -s $1 $2
