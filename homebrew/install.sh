@@ -26,7 +26,3 @@ brew install coreutils
 
 # Required to use notify functions
 brew install terminal-notifier 
-
-# Add file command from gnu
-brew install file-formula
-ln -s `brew --prefix file-formula`/bin/file `brew --prefix`/bin/gfile
