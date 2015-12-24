@@ -11,18 +11,10 @@ then
   return
 fi
 
+echo "> Installing brew"
+
 # Check if we already have Homebrew installed
 type -P brew &>/dev/null ||
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
 
-# Replace git with the brew version (always latest)
-brew install git
-
-# Install homebrew packages
-brew install grc wget hub gist #spark
-
-# Good for gnu utils
-brew install coreutils
-
-# Required to use notify functions
-brew install terminal-notifier 
+brew bundle
