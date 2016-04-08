@@ -1,0 +1,7 @@
+#
+# Provide gulp completion if installed
+#
+
+type -P gulp &>/dev/null || return
+
+eval "$(gulp --completion=bash)"
