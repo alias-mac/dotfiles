@@ -1,0 +1,197 @@
+#!/usr/bin/env node
+
+/**
+ * List all local branches in current directory and show their github status
+ *
+ * This is useful when `git-delete-local-merged` can't clean our house :)
+ */
+
+'use strict'
+
+const os = require('os');
+
+let conf = require(os.homedir() + '/.config/gh.json');
+
+const _extend = function(origin, add) {
+    const utils = require('util');
+
+    // Don't do anything if add isn't an object
+    if (!add || !utils.isObject(add)) return origin;
+
+    var keys = Object.keys(add);
+    var i = keys.length;
+    while (i--) {
+        origin[keys[i]] = add[keys[i]];
+    }
+    return origin;
+};
+
+const defaultReqOpts = {
+    hostname: 'api.' + (conf.host || 'github.com'),
+    protocol: 'https:',
+    headers: {
+        'user-agent': 'Mozilla/5.0',
+    },
+    auth: `${conf.user}:${conf.token}`,
+};
+
+getBranchesSha()
+    .then(list => {
+        let promisses = [];
+
+        let i = 0;
+        for (let branch in list) {
+
+            let p = getState(list[branch].ref)
+                .then(issues => {
+                    list[branch].issues = issues;
+                })
+                .catch(reason => console.error(reason));
+
+            promisses.push(p);
+        }
+
+        Promise.all(promisses)
+            .then(() => {
+                listBranches(list);
+            })
+            .catch(reason => console.error(reason));
+    })
+    .catch(reason => console.error(reason));
+
+
+function listBranches(list) {
+    for (let branch in list) {
+
+        process.stdout.write(`  ${branch}\t`);
+
+        let color, marker;
+        color = 31;
+        marker = '✖︎';
+
+        if (!list[branch].issues) {
+            process.stdout.write(` \x1b[33m${marker} Not checked\x1b[0m\n`);
+            continue;
+        }
+
+        if (!list[branch].issues.length) {
+            process.stdout.write(` \x1b[${color}m${marker} No PRs found\x1b[0m\n`);
+            continue;
+        }
+
+        list[branch].issues.map((issue) => {
+
+            let color, marker;
+            let state = issue.state;
+            switch (state) {
+                case 'closed':
+                    // closed without being merged
+                    // color = 31;
+                    // marker = '✖︎';
+
+                    // merged
+                    color = 32;
+                    marker = '✔︎';
+                    break;
+                case 'open':
+                    marker = '●';
+                    color = 33;
+                    break;
+                default:
+                    console.error('Unknown state');
+            }
+            process.stdout.write(` \x1b[${color}m${issue.number} ${marker}\x1b[0m\t${issue.html_url}`);
+        });
+
+        process.stdout.write('\n');
+    }
+}
+
+/**
+ * Gets the branches (name and sha) in the current working directory.
+ *
+ * @returns {Promise}
+ */
+function getBranchesSha() {
+    const exec = require('child_process').exec;
+    const regex = /^((\w|[-/])+?)\s+?(\w+).*$/;
+
+    return new Promise((resolve, reject) => {
+
+
+        exec('git branch -v --no-abbrev', (err, stdout, stderr) => {
+            if (err || stderr) {
+                reject(err || stderr);
+                return;
+            }
+
+            let branches = stdout.trim().split('\n');
+            let list = {};
+            branches.forEach((b) => {
+
+                let branch = b.replace('*', '').trim().match(regex);
+                let name = branch[1];
+                let ref = branch[3];
+
+                if (ref.length !== 40) {
+                    throw `Error parsing ${b}`;
+                }
+
+                if (name && ref) {
+                    list[name] = {
+                        name,
+                        ref,
+                    };
+                }
+            });
+
+            resolve(list);
+        });
+    });
+}
+
+function getState(sha) {
+
+    const https = require('https');
+
+    return new Promise((resolve, reject) => {
+
+        let reqData = _extend(defaultReqOpts, {
+            method: 'GET',
+            path: '/search/issues?q=' + [
+                sha,
+                'repo:sugarcrm/Mango',
+                'type:pr',
+            ].join('+'),
+        });
+
+        let req = https.request(reqData, (res) => {
+
+            // console.log(res.headers);
+
+            if (res.statusCode === 404) {
+                resolve([]);
+                return;
+            }
+
+            let data = '';
+            res.on('data', (d) => {
+                data += d;
+            });
+
+            res.on('end', () => {
+                data = JSON.parse(data);
+                if (data.incomplete_results) {
+                    console.warn('There are more results!!!');
+                }
+                // console.log(data);
+                resolve(data.items);
+            });
+
+        }).on('error', (e) => {
+            reject(e);
+        });
+
+        req.end();
+    });
+}
