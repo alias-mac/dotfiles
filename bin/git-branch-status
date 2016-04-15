@@ -36,13 +36,18 @@ const defaultReqOpts = {
 };
 
 getBranchesSha()
-    .then(list => {
+    .then((res) => {
+
+        // TODO change this to destructuring when supported by latest node
+        let list = res.list;
+        let repo = res.repo;
+
         let promisses = [];
 
         let i = 0;
         for (let branch in list) {
 
-            let p = getState(list[branch].ref)
+            let p = getState(list[branch].ref, repo)
                 .then(issues => {
                     list[branch].issues = issues;
                 })
@@ -114,10 +119,9 @@ function listBranches(list) {
  */
 function getBranchesSha() {
     const exec = require('child_process').exec;
-    const regex = /^((\w|[-/])+?)\s+?(\w+).*$/;
 
-    return new Promise((resolve, reject) => {
-
+    const branchRegex = /^((\w|[-/])+?)\s+?(\w+).*$/;
+    let branchesP = new Promise((resolve, reject) => {
 
         exec('git branch -v --no-abbrev', (err, stdout, stderr) => {
             if (err || stderr) {
@@ -129,7 +133,7 @@ function getBranchesSha() {
             let list = {};
             branches.forEach((b) => {
 
-                let branch = b.replace('*', '').trim().match(regex);
+                let branch = b.replace('*', '').trim().match(branchRegex);
                 let name = branch[1];
                 let ref = branch[3];
 
@@ -148,9 +152,28 @@ function getBranchesSha() {
             resolve(list);
         });
     });
+
+    // supports only git@host:org/repo.git returning org/repo for now
+    const repoRegex = /^.+:(.+)\.git$/;
+    let repoP = new Promise((resolve, reject) => {
+        exec('git ls-remote --get-url', (err, stdout, stderr) => {
+            if (err || stderr) {
+                reject(err || stderr);
+                return;
+            }
+
+            resolve(stdout.trim().match(repoRegex)[1]);
+        });
+    });
+
+    return new Promise((resolve, reject) => {
+        Promise.all([branchesP, repoP]).then(res => {
+            resolve({list: res[0], repo: res[1]});
+        }).catch(reject);
+    });
 }
 
-function getState(sha) {
+function getState(sha, repo) {
 
     const https = require('https');
 
@@ -160,7 +183,7 @@ function getState(sha) {
             method: 'GET',
             path: '/search/issues?q=' + [
                 sha,
-                'repo:sugarcrm/Mango',
+                `repo:${repo}`,
                 'type:pr',
             ].join('+'),
         });
