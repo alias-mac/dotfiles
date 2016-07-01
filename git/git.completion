@@ -2,10 +2,5 @@
 # Provide git autocomplete
 #
 
-completion=/usr/local/etc/bash_completion.d/git-completion.bash
-
-if [[ -a $completion ]]
-then
-  source $completion
-  return
-fi
+__open_war_loadifexists "`brew --prefix`/etc/bash_completion.d/git-completion.bash"
+__open_war_loadifexists "`brew --prefix`/etc/bash_completion.d/hub.bash_completion.sh"
