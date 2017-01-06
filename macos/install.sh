@@ -7,7 +7,7 @@ then
   return
 fi
 
-$DOT/osx/set-defaults.sh
+$DOT/macos/set-defaults.sh
 
 user ' - Do you want to enable Remote Login with SSH?'
 read -n 1 ssh_login

@@ -119,7 +119,7 @@ find . -name pre-install.sh | while read installer ; do sh -c "${installer}" ; d
 
 install_dotfiles
 
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+# Keep-alive: update existing `sudo` time stamp until install has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # find the installers and run them iteratively
@@ -127,4 +127,3 @@ find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
 
 echo ''
 echo '  All installed!'
-
