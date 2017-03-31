@@ -8,4 +8,3 @@ export NVM_DIR=~/.nvm
 
 # and brew install
 [ -s "/usr/local/opt/nvm/nvm.sh" ] &&  . "/usr/local/opt/nvm/nvm.sh"
-
