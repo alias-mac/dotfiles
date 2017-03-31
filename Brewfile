@@ -11,7 +11,6 @@ brew 'gist'
 brew 'git'
 brew 'grc'
 brew 'hub'
-brew 'openssl'
 brew 'node@6'
 brew 'syncthing', restart_service: true
 brew 'terminal-notifier'
