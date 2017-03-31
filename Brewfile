@@ -13,7 +13,7 @@ brew 'grc'
 brew 'hub'
 brew 'openssl'
 brew 'node'
-brew 'syncthing'
+brew 'syncthing', restart_service: true
 brew 'terminal-notifier'
 brew 'wget'
 brew 'homebrew/dupes/file-formula'
