@@ -12,6 +12,7 @@ brew 'git'
 brew 'grc'
 brew 'hub'
 brew 'node@6'
+brew 'nvm'
 brew 'syncthing', restart_service: true
 brew 'terminal-notifier'
 brew 'wget'
