@@ -69,6 +69,18 @@ defaults write NSGlobalDomain AppleLanguages -array "en" "pt_PT" "pt"
 /usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:4 string "HH:mm:ss zzzz"' ~/Library/Preferences/.GlobalPreferences.plist
 
 ##
+# Autocorrect
+##
+
+# Turn autocorrect, capitalization, period etc off globally (all apps)
+defaults write -g WebAutomaticSpellingCorrectionEnabled -bool false
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write -g NSAutomaticCapitalizationEnabled -bool false
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+# Turn text completion off on touchbar (no need for that!)
+defaults write -g NSAutomaticTextCompletionEnabled -bool false
+
+##
 # Dock
 ##
 
