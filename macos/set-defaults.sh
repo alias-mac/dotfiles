@@ -24,6 +24,9 @@ defaults write com.apple.menuextra.clock DateFormat -string "EEE H:mm:ss"
 defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
 defaults write com.apple.menuextra.clock IsAnalog -bool false
 
+# Set dark interface on the menu
+defaults write -g AppleInterfaceStyle -string "Dark"
+
 # Enable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 defaults write NSGlobalDomain NSSpellCheckerAutomaticallyIdentifiesLanguages -bool true
