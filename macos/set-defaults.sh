@@ -183,14 +183,6 @@ defaults write com.apple.iCal "CalDefaultCalendarSelectedByUser" -bool true
 defaults write com.apple.iCal "CalDefaultCalendar" -string "5E11650F-1FBB-4725-84F7-7A5A5A485735"
 
 ##
-# iChat
-##
-
-# make it more silent on buddy in/out
-#/usr/libexec/PlistBuddy -c "Set :EventActions:BuddyAvailable:PlaySound false" ~/Library/Preferences/com.apple.iChat.plist
-#/usr/libexec/PlistBuddy -c "Set :EventActions:BuddyUnavailable:PlaySound false" ~/Library/Preferences/com.apple.iChat.plist
-
-##
 # Safari & WebKit
 ##
 
