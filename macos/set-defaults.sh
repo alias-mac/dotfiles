@@ -239,6 +239,13 @@ defaults write com.apple.Terminal "Startup Window Settings" -string "Bond"
 #defaults write org.x.X11 wm_ffm -bool true
 
 ##
+# ActivityMonitor
+##
+
+# Set dock icon to show CPU history
+defaults write com.apple.ActivityMonitor.plist IconType -int 6
+
+##
 # Twitter.app
 ##
 
