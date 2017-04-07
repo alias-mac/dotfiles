@@ -27,9 +27,20 @@ defaults write com.apple.menuextra.clock IsAnalog -bool false
 # Set dark interface on the menu
 defaults write -g AppleInterfaceStyle -string "Dark"
 
-# Enable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
-defaults write NSGlobalDomain NSSpellCheckerAutomaticallyIdentifiesLanguages -bool true
+##
+# Autocorrect
+##
+
+# Turn autocorrect, capitalization, period etc off globally (all apps)
+defaults write -g WebAutomaticSpellingCorrectionEnabled -bool false
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write -g NSAutomaticCapitalizationEnabled -bool false
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write -g NSSpellCheckerAutomaticallyIdentifiesLanguages -bool true
+
+# Turn text completion off on touchbar (no need for that!)
+defaults write -g NSAutomaticTextCompletionEnabled -bool false
+
 
 ##
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
@@ -70,18 +81,6 @@ defaults write NSGlobalDomain AppleLanguages -array "en" "pt_PT" "pt"
 /usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:2 string "HH:mm:ss"' ~/Library/Preferences/.GlobalPreferences.plist
 /usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:3 string "HH:mm:ss z"' ~/Library/Preferences/.GlobalPreferences.plist
 /usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:4 string "HH:mm:ss zzzz"' ~/Library/Preferences/.GlobalPreferences.plist
-
-##
-# Autocorrect
-##
-
-# Turn autocorrect, capitalization, period etc off globally (all apps)
-defaults write -g WebAutomaticSpellingCorrectionEnabled -bool false
-defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
-defaults write -g NSAutomaticCapitalizationEnabled -bool false
-defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
-# Turn text completion off on touchbar (no need for that!)
-defaults write -g NSAutomaticTextCompletionEnabled -bool false
 
 ##
 # Dock
