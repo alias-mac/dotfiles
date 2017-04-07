@@ -162,7 +162,7 @@ defaults write com.apple.AddressBook ABSocialProfilesVisible -bool true
 ##
 # Better Touch Tool
 ##
-defaults write launchOnStartup -bool true
+defaults write com.hegenberg.BetterTouchTool.plist launchOnStartup -bool true
 
 ##
 # iCal
