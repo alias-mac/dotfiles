@@ -213,6 +213,13 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 ##
+# Mail
+##
+
+# Show most recent message at the top
+defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist ConversationViewSortDescending -bool true
+
+##
 # Terminal
 ##
 
