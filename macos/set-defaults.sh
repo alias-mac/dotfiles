@@ -218,6 +218,8 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # Show most recent message at the top
 defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist ConversationViewSortDescending -bool true
+# Always bcc myself
+defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist BccSelf -bool true
 
 ##
 # Terminal
