@@ -83,6 +83,26 @@ defaults write NSGlobalDomain AppleLanguages -array "en" "pt_PT" "pt"
 /usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:4 string "HH:mm:ss zzzz"' ~/Library/Preferences/.GlobalPreferences.plist
 
 ##
+# Control strip (for touchbar)
+##
+
+defaults write com.apple.controlstrip.plist MiniCustomized -array \
+    "com.apple.system.brightness"\
+    "com.apple.system.volume"\
+    "com.apple.system.mute"\
+    "com.apple.system.screen-lock"
+
+defaults write com.apple.controlstrip.plist FullCustomized -array \
+    "com.apple.system.group.brightness"\
+    "com.apple.system.mission-control"\
+    "com.apple.system.launchpad"\
+    "com.apple.system.group.keyboard-brightness"\
+    "com.apple.system.group.media"\
+    "com.apple.system.group.volume"\
+    "com.apple.system.siri"\
+    "com.apple.system.screen-lock"
+
+##
 # Dock
 ##
 
