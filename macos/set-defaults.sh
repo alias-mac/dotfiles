@@ -41,6 +41,13 @@ defaults write -g NSSpellCheckerAutomaticallyIdentifiesLanguages -bool true
 # Turn text completion off on touchbar (no need for that!)
 defaults write -g NSAutomaticTextCompletionEnabled -bool false
 
+##
+# Screen saver options
+##
+
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 ##
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
