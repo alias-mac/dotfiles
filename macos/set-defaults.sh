@@ -124,6 +124,9 @@ defaults write com.apple.dock magnification -bool true
 defaults write com.apple.dock tilesize -int 45
 defaults write com.apple.dock largesize -int 75
 
+# Don't use auto show/hide on dock
+defaults write com.apple.dock autohide -bool false
+
 ##
 # Finder
 ##
