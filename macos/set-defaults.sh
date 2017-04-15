@@ -223,6 +223,9 @@ defaults write com.apple.iCal "CalDefaultCalendar" -string "5E11650F-1FBB-4725-8
 # Safari & WebKit
 ##
 
+# Show full website address
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
 # Show status bar
 defaults write com.apple.Safari ShowStatusBar -bool true
 
