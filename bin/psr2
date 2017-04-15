@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-# This command prints all the PSR-2 issues for all the files in git staged area.
-# Requires PHP Code Sniffer (phpcs).
-#
-
-standard="PSR2"
-
-phpcs --standard="$standard" $*
