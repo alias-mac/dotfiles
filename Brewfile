@@ -17,7 +17,7 @@ brew 'syncthing', restart_service: true
 brew 'terminal-notifier'
 brew 'wget'
 brew 'yarn'
-brew 'homebrew/dupes/file-formula'
+brew 'file-formula'
 cask 'alfred'
 cask 'appcleaner'
 cask 'atom'
