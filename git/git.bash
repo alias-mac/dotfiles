@@ -8,7 +8,7 @@ then
 
   type -P hub &>/dev/null && [ -d .git ] && $(git rev-parse) &&
     eval "git remote -v show | grep github &>/dev/null" &&
-    test -n $? && ci_status=$(hub ci-status)
+    test -n $? && ci_status=$(hub ci-status < /dev/null)
 
   case $ci_status in
     *success) ci_status="\[\e[01;32m\]✔\[\e[m\] ";; # green
