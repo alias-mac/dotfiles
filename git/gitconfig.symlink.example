@@ -29,7 +29,7 @@
 [core]
   quotepath = false
   excludesfile = ~/.gitignore_global
-  # editor = vim
+  editor = vim
 [apply]
   whitespace = nowarn
 [mergetool]

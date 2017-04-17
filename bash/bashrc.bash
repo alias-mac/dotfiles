@@ -1,8 +1,8 @@
 
 type -P vi &>/dev/null && export EDITOR='vi'
 type -P vim &>/dev/null && export EDITOR='vim'
-type -P subl &>/dev/null && export EDITOR='subl -w'
-type -P atom &>/dev/null && export EDITOR='atom -w'
+type -P subl &>/dev/null && export EDITOR='subl'
+type -P atom &>/dev/null && export EDITOR='atom'
 
 # your projects folder
 export PROJECTS=~/Code
