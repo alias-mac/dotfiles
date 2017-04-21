@@ -3,4 +3,4 @@
 # https://yarnpkg.com
 #
 
-type -P atom &>/dev/null && export PATH="$PATH:`yarn global bin`"
+type -P yarn &>/dev/null && export PATH="`yarn global bin`:$PATH"
