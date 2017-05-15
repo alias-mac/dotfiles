@@ -171,7 +171,7 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool true
 defaults write com.apple.finder EmptyTrashSecurely -bool true
 
 # Open default on my home folder
-defaults write com.apple.finder NewWindowTargetPath -string "file://localhost${HOME}"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
 
 ##
 # Address Book
