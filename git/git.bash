@@ -2,7 +2,7 @@
 # Nice git prompt for massive git usage
 #
 
-prompt=/usr/local/etc/bash_completion.d/git-prompt.sh
+prompt=$(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 if [[ -a $prompt ]]
 then
 
