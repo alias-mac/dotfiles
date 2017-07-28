@@ -7,4 +7,4 @@ export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # and brew install
-[ -s "/usr/local/opt/nvm/nvm.sh" ] &&  . "/usr/local/opt/nvm/nvm.sh"
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] &&  . "$(brew --prefix)/opt/nvm/nvm.sh"
