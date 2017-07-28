@@ -1,1 +1,9 @@
-. ~/.bashrc
+
+[ "$0" = "-bash" ] && export LOGIN_BASH="1"
+echo "$-" | grep -q "i" && export INTERACTIVE_BASH="1"
+
+# run bashrc if this is a login and interactive shell
+if [ -n "$LOGIN_BASH" ] && [ -n "$INTERACTIVE_BASH" ]
+then
+  source ~/.bashrc
+fi
