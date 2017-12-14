@@ -3,6 +3,7 @@ type -P vi &>/dev/null && export EDITOR='vi'
 type -P vim &>/dev/null && export EDITOR='vim'
 type -P subl &>/dev/null && export EDITOR='subl'
 type -P atom &>/dev/null && export EDITOR='atom'
+type -P code &>/dev/null && export EDITOR='code'
 
 # your projects folder
 export PROJECTS=~/Code
