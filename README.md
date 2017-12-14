@@ -63,9 +63,6 @@ bubble bath.
 
 - If you want some more colors for things like `ls`, install grc:
   `brew install grc`.
-- If you install the excellent
-  [php-version](https://github.com/wilmoore/php-version) to manage multiple php
-  versions.
 
 ## Bugs
 
