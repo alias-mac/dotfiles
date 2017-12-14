@@ -45,6 +45,10 @@ There's a few special files in the hierarchy.
 
 - **bin/**: Anything in `bin/` will get added to your `$PATH` and be made
   available everywhere.
+- **Brewfile**: This is a list of packages and applications for
+  [Homebrew](https://brew.sh) and [Homebrew Cask](https://caskroom.github.io)
+  to install: things like git, grc, wget or applications like Chrome and
+  VSCode. Might want to edit this file before running any initial setup.
 - **topic/\*.bash**: Any files ending in `.bash` get loaded into your
   environment.
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into your
