@@ -55,15 +55,6 @@ There's a few special files in the hierarchy.
   loaded last so that they get loaded after we set up all `*.bash` files
   (dependencies).
 
-## Add-ons
-
-There are a few things I use to make my life awesome. They're not a required
-dependency, but if you install them they'll make your life a bit more like a
-bubble bath.
-
-- If you want some more colors for things like `ls`, install grc:
-  `brew install grc`.
-
 ## Bugs
 
 I want this to work for everyone; that means when you clone it down it should
