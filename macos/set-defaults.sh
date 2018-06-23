@@ -77,7 +77,7 @@ defaults write NSGlobalDomain KeyRepeat -int 5
 # Set language and text formats (System Preferences → Language & Text)
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, and `true` with `false`.
-defaults write NSGlobalDomain AppleLanguages -array "en" "pt_PT" "pt"
+defaults write NSGlobalDomain AppleLanguages -array "en-US" "pt-PT" "pt-US"
 #defaults write NSGlobalDomain AppleLocale -string "pt_PT@currency=EUR"
 #defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 #defaults write NSGlobalDomain AppleMetricUnits -bool true
