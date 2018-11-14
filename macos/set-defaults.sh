@@ -27,6 +27,12 @@ defaults write com.apple.menuextra.clock IsAnalog -bool false
 # Set dark interface on the menu
 defaults write -g AppleInterfaceStyle -string "Dark"
 
+# Set Close windows when quitting an app to false
+# This will preserve the windows in iTerm2 for example after updating or
+# quitting, which is exactly what I need.
+
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
 ##
 # Autocorrect
 ##
