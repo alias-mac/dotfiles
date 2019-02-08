@@ -1,4 +1,12 @@
-if [[ -a $HOME/.ssh/config ]]
-then
-    complete -o default -o nospace -W "$(grep "^Host" $HOME/.ssh/config | grep -v “[?*]” | cut -d" " -f2)" scp sftp ssh
-fi
+_ssh()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=$(grep '^Host' $HOME/.ssh/config $HOME/.ssh/config.d/* 2>/dev/null | grep -v '[?*]' | cut -d ' ' -f 2-)
+
+    COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
+    return 0
+}
+complete -F _ssh ssh sftp scp
