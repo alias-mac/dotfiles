@@ -9,7 +9,7 @@ type -P code &>/dev/null && export EDITOR='code'
 export PROJECTS=~/Code
 
 # history like it should always be (no duplicate entries)
-export HISTCONTROL=ignoredups:erasedups
+export HISTCONTROL=ignoredups:erasedups:ignorespace
 # big big history
 export HISTSIZE=100000
 export HISTFILESIZE=100000
