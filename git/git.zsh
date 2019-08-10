@@ -1,7 +1,9 @@
 #
 # Nice git prompt for massive git usage
 #
+
 prompt=$(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+
 if [[ -a $prompt ]]
 then
 
@@ -19,8 +21,10 @@ then
 
 
   precmd() {
+    autoload colors && colors
+
     __git_ps1 "
-$(battery_status)%m:%1~ %n
+$(battery_status)%m:%{$fg_bold[cyan]%}%1/%\/%{$reset_color%} %n
 " "$ " "(%s)"
   }
 
