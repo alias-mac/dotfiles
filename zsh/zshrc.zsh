@@ -34,4 +34,4 @@ then
 fi
 
 setopt PROMPT_SUBST
-setopt IGNORE_EOF # prevents closing the shell by mistake with `ctrl + d`
+#setopt IGNORE_EOF # prevents closing the shell by mistake with `ctrl + d`
