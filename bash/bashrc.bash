@@ -6,7 +6,7 @@ type -P atom &>/dev/null && export EDITOR='atom'
 type -P code &>/dev/null && export EDITOR='code'
 
 # your projects folder
-export PROJECTS=~/Code
+export CODE=~/Code
 
 # history like it should always be (no duplicate entries)
 export HISTCONTROL=ignoredups:erasedups:ignorespace
