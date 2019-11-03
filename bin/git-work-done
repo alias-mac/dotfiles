@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Usage: git work-done --since=yesterday
+
+git log --author="$(git config user.name)" --color --pretty=format:"%cI - %s" --reverse $@
