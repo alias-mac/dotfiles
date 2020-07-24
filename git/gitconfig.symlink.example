@@ -46,3 +46,6 @@
   default = simple
 [pull]
   rebase = true
+
+[includeIf "gitdir:~/Code/Work/"]
+  path = .gitconfig-work
