@@ -35,3 +35,6 @@ fi
 
 setopt PROMPT_SUBST
 #setopt IGNORE_EOF # prevents closing the shell by mistake with `ctrl + d`
+
+# if there are no matches for globs, leave them alone and execute the command
+setopt NO_NOMATCH
