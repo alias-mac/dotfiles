@@ -2,12 +2,11 @@
 #
 # A very slightly quicker way to credit an author on the latest commit.
 #
-# $1 - The full name of the author.
-# $2 - The email address of the author.
+# $1 - The author (full name + email).
 #
 # Examples
 #
-#   git credit "Zach Holman" zach@example.com
+#   git credit "A U Thor <author@example.com>"
 #
 
-git commit --amend --author "$1 <$2>" -C HEAD
+git commit --amend --author "$1" -C HEAD
