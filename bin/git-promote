@@ -1,9 +1,16 @@
 #!/bin/sh
 #
-# Promotes a local topic branch to a remote tracking branch of the same name
-# in origin.
+# Promotes a local topic branch to a remote tracking branch of the same name,
+# by pushing and then setting up the git config
 #
 
-current=$(basename $(git symbolic-ref HEAD))
+curr_branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
 
-git push --set-upstream origin $current
+remote_branch=$(git branch -r | grep "origin/${curr_branch}")
+[ -z "${remote_branch}" ] && ( git push origin "${curr_branch}" )
+
+origin=$(git config --get "branch.${curr_branch}.remote")
+[ -z "${origin}" ] && ( git config --add "branch.${curr_branch}.remote" origin )
+
+merge=$(git config --get "branch.${curr_branch}.merge")
+[ -z "${merge}" ] && ( git config --add "branch.${curr_branch}.merge" "refs/heads/${curr_branch}" )
