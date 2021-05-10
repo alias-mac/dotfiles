@@ -10,17 +10,9 @@
 if test ! $(which brew)
 then
 
-  if test "$(uname -s)" = "Darwin"
-  then
-    echo "> Installing brew"
+  echo "> Installing brew"
 
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /tmp/homebrew-install.log
 
-    brew bundle
-  elif test "$(uname -s)" = "Linux"
-  then
-    echo "> Installing lixuxbrew"
-
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"  > /tmp/homebrew-install.log
-  fi
+  brew bundle
 fi
