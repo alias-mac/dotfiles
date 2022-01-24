@@ -1,0 +1,2 @@
+# allow diffs on binary plists
+*.plist diff=plist

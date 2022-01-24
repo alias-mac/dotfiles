@@ -28,6 +28,7 @@
   ui = true
 [core]
   quotepath = false
+  attributesfile = ~/.gitattributes_global
   excludesfile = ~/.gitignore_global
   editor = vim
 [apply]
@@ -36,6 +37,9 @@
   keepBackup = false
 [difftool]
   prompt = false
+# allow diffs on binary plists
+[diff "plist"]
+	textconv = plutil -convert xml1 -o -
 [help]
   autocorrect = 1
 [push]
