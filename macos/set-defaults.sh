@@ -267,6 +267,13 @@ defaults write com.apple.Terminal "Startup Window Settings" -string "Bond"
 defaults write com.apple.ActivityMonitor.plist IconType -int 6
 
 ##
+# iTerm2
+##
+
+defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$PWD/Library/Mobile Documents/com~apple~CloudDocs/Apps/iterm2-`scutil --get ComputerName`"
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+
+##
 # Kill affected applications
 ##
 
