@@ -10,6 +10,7 @@ brew 'git'
 brew 'gh'
 brew 'grc'
 brew 'volta'
+brew 'bpytop'
 brew 'syncthing', restart_service: true
 brew 'terminal-notifier'
 brew 'wget'
