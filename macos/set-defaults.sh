@@ -15,14 +15,10 @@
 # General
 ##
 
-# Menu bar: show TextInput, Displays, User, etc.
-defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Displays.menu" "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu" "/System/Library/CoreServices/Menu Extras/TextInput.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu" "/System/Library/CoreServices/Menu Extras/User.menu"
-
-
 # Set the clock settings (System Preferences → Date & Time → Clock)
-defaults write com.apple.menuextra.clock DateFormat -string "EEE H:mm:ss"
+defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d  H:mm:ss"
 defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
-defaults write com.apple.menuextra.clock IsAnalog -bool false
+defaults write com.apple.menuextra.clock ShowSeconds -bool true
 
 # Set dark interface on the menu
 defaults write -g AppleInterfaceStyle -string "Dark"
@@ -31,7 +27,7 @@ defaults write -g AppleInterfaceStyle -string "Dark"
 # This will preserve the windows in iTerm2 for example after updating or
 # quitting, which is exactly what I need.
 
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+defaults write -g NSQuitAlwaysKeepsWindows -bool false
 
 ##
 # Autocorrect
@@ -67,37 +63,43 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -
 
 # Enable full keyboard access for all controls (System Preferences → Keyboard → Keyboard Shortcuts)
 # (e.g. enable Tab in modal dialogs)
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-# Change "Move focus to next window" shortcut to ⌘§
-# and "Move focus to the window drawer" shorcut to ⌥⌘§
-/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:51:value:parameters:0 39" ~/Library/Preferences/com.apple.symbolichotkeys.plist
-/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:27:value:parameters:0 96" ~/Library/Preferences/com.apple.symbolichotkeys.plist
-# Disable "Select the previous input source shortcut"
-/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:60:enabled 0" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+defaults write -g AppleKeyboardUIMode -int 3
 
 # Disable press-and-hold for keys in favor of key repeat.
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate (System Preferences → Keyboard)
-defaults write NSGlobalDomain KeyRepeat -int 5
-#defaults write NSGlobalDomain InitialKeyRepeat -int 20
+defaults write -g KeyRepeat -int 5
+#defaults write -g InitialKeyRepeat -int 20
 
 # Set language and text formats (System Preferences → Language & Text)
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, and `true` with `false`.
-defaults write NSGlobalDomain AppleLanguages -array "en-US" "pt" "pt-US"
-defaults write NSGlobalDomain AppleLocale -string "pt_PT@currency=EUR"
-defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-defaults write NSGlobalDomain AppleMetricUnits -bool true
-defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
+defaults write -g AppleLanguages -array "en-US" "pt" "pt-US"
+defaults write -g AppleLocale -string "pt_PT@currency=EUR"
+defaults write -g AppleMeasurementUnits -string "Centimeters"
+defaults write -g AppleMetricUnits -bool true
+defaults write -g AppleTemperatureUnit -string "Celsius"
 
 # Set system time to HH:mm (24h format)
-defaults write NSGlobalDomain AppleICUForce24HourTime -bool true
+defaults write -g AppleICUForce24HourTime -bool true
 #/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings dict' ~/Library/Preferences/.GlobalPreferences.plist
 #/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:1 string "HH:mm"' ~/Library/Preferences/.GlobalPreferences.plist
 #/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:2 string "HH:mm:ss"' ~/Library/Preferences/.GlobalPreferences.plist
 #/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:3 string "HH:mm:ss z"' ~/Library/Preferences/.GlobalPreferences.plist
 #/usr/libexec/PlistBuddy -c 'Add :AppleICUTimeFormatStrings:4 string "HH:mm:ss zzzz"' ~/Library/Preferences/.GlobalPreferences.plist
+
+# Adds PT keyboard to input sources
+defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '{InputSourceKind="Keyboard Layout"; "KeyboardLayout Name"="Portuguese"; "KeyboardLayout ID"=10;}'
+
+# Change "Move focus to next window" shortcut to ⌘< (same keys, but PT layout)
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:27:value:parameters:0 60" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+# Disable "Select the previous input source" shortcut
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:60:enabled 0" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+# Disable "Select next source in Input menu" shortcut
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:61:enabled 0" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+
+defaults write com.apple.HIToolbox AppleFnUsageType -int 1
 
 ##
 # Control strip (for touchbar)
@@ -124,7 +126,7 @@ defaults write com.apple.controlstrip.plist FullCustomized -array \
 ##
 
 # Minimize on double click (System Preferences → Dock)
-defaults write NSGlobalDomain AppleMiniaturizeOnDoubleClick -bool true
+defaults write -g AppleMiniaturizeOnDoubleClick -bool true
 
 # Minimize to application (System Preferences → Dock)
 defaults write com.apple.dock minimize-to-application -bool true
@@ -184,27 +186,6 @@ defaults write com.apple.finder EmptyTrashSecurely -bool true
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
 
 ##
-# Address Book
-##
-
-# Show first name before last name
-defaults write com.apple.AddressBook ABNameDisplay -int 0
-
-# Sort by First name and then Last name
-defaults write com.apple.AddressBook ABNameSortingFormat -string "sortingFirstName sortingLastName"
-
-# Show Nickname, JobTitle, Department
-defaults write com.apple.AddressBook ABNicknameVisible -int 1
-defaults write com.apple.AddressBook ABJobTitleVisible -int 1
-defaults write com.apple.AddressBook ABDepartmentVisible -int 1
-
-# Show Related Names, Birthday and other dates on templates
-defaults write com.apple.AddressBook ABBirthDayVisible -int 1
-defaults write com.apple.AddressBook ABDatesVisible -int 1
-defaults write com.apple.AddressBook ABRelatedRecordsVisible -int 1
-defaults write com.apple.AddressBook ABSocialProfilesVisible -bool true
-
-##
 # Better Touch Tool
 ##
 defaults write com.hegenberg.BetterTouchTool.plist launchOnStartup -bool true
@@ -261,15 +242,6 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 ##
-# Mail
-##
-
-# Show most recent message at the top
-defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist ConversationViewSortDescending -bool true
-# Always bcc myself
-defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist BccSelf -bool true
-
-##
 # Terminal
 ##
 
@@ -295,16 +267,11 @@ defaults write com.apple.Terminal "Startup Window Settings" -string "Bond"
 defaults write com.apple.ActivityMonitor.plist IconType -int 6
 
 ##
-# GPG tools (Mail)
-##
-defaults write org.gpgtools.gpgmail DefaultSecurityMethod -int 2
-
-##
 # Kill affected applications
 ##
 
-for app in "BetterTouchTool" "Dock" "Finder" "iCal" "Messages" \
-    "Safari" "SystemUIServer" "Transmission" "Twitter"; do
+for app in "BetterTouchTool" "Dock" "Finder" "Calendar" "Messages" \
+    "Safari" "SystemUIServer"; do
     killall "$app" > /dev/null 2>&1
 done
 
