@@ -27,7 +27,7 @@ defaults write -g AppleInterfaceStyle -string "Dark"
 # This will preserve the windows in iTerm2 for example after updating or
 # quitting, which is exactly what I need.
 
-defaults write -g NSQuitAlwaysKeepsWindows -bool false
+defaults write -g NSQuitAlwaysKeepsWindows -bool true
 
 ##
 # Autocorrect
