@@ -1,2 +1,4 @@
+{{ if eq .chezmoi.os "darwin" -}}
 # allow diffs on binary plists
 *.plist diff=plist
+{{ end -}}
