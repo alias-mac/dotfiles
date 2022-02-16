@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Bootstrap dotfiles with chezmoi.
+#
+# Local dev (from repo root):
+#   ./setup
+#
+# Fresh machine (no clone needed):
+#   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --branch chezmoi \
+#     git@github.com:alias-mac/dotfiles.git
+#
+
+set -euo pipefail
+
+CHEZMOI_ARGS=(init --apply --source "$PWD")
+
+if command -v chezmoi >/dev/null 2>&1; then
+  echo "==> Running chezmoi ${CHEZMOI_ARGS[*]}"
+  chezmoi "${CHEZMOI_ARGS[@]}"
+  exit 0
+fi
+
+echo "==> chezmoi not found — downloading installer"
+sh -c "$(curl -fsLS get.chezmoi.io)" -- "${CHEZMOI_ARGS[@]}"
