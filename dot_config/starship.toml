@@ -1,0 +1,116 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](#9A348E)\
+$battery\
+$username\
+[](bg:#DA627D fg:#9A348E)\
+$directory\
+[](bg:#FCA17D fg:#DA627D)\
+$git_branch\
+$git_status\
+[](fg:#FCA17D bg:#86BBD8)\
+$golang\
+$java\
+$nodejs\
+$php\
+$rust\
+[](fg:#86BBD8 bg:#06969A)\
+$docker_context\
+[ ](fg:#06969A)\
+$line_break\
+$container\
+$hostname\
+$sudo\
+$cmd_duration\
+$character"""
+
+# allow git commands to run for the prompt
+command_timeout = 1000
+
+[username]
+show_always = true
+style_user = "bg:#9A348E"
+style_root = "bg:#9A348E"
+format = '[ $user ]($style)'
+
+[directory]
+style = "bg:#DA627D"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = ".../"
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Code" = " "
+
+[git_branch]
+style = "bg:#FCA17D"
+format = '[[ $symbol $branch ](fg:#1e1e2e bg:#FCA17D)]($style)'
+
+[git_status]
+style = "bg:#FCA17D"
+format = '[[($all_status$ahead_behind )](fg:#1e1e2e bg:#FCA17D)]($style)'
+
+[golang]
+style = "bg:#86BBD8"
+format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+
+[java]
+style = "bg:#86BBD8"
+format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+
+[nodejs]
+style = "bg:#86BBD8"
+format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+
+[php]
+style = "bg:#86BBD8"
+format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+
+[rust]
+style = "bg:#86BBD8"
+format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+
+[docker_context]
+style = "bg:#06969A"
+format = '[[ $symbol( $context) ](fg:#1e1e2e bg:#06969A)]($style)'
+
+[battery]
+full_symbol = '🔌'
+charging_symbol = '⚡'
+discharging_symbol = '🔋'
+unknown_symbol = '⌛️'
+empty_symbol = '🚨'
+format = '[ $symbol$percentage ](fg:#1e1e2e bg:#9A348E)'
+
+[[battery.display]]
+threshold = 101
+style = "fg:#1e1e2e bg:#9A348E"
+
+[line_break]
+disabled = false
+
+[cmd_duration]
+show_milliseconds = true
+format = " in $duration "
+style = "bg:#33658A"
+disabled = false
+show_notifications = false
+min_time_to_notify = 45000
+
+[container]
+style = "bg:#33658A"
+format = "[](#33658A)[$symbol $name]($style)[ ](fg:#33658A)"
+
+[hostname]
+style = "bg:#33658A"
+format = "[](#33658A)[$hostname]($style)[ ](fg:#33658A)"
+
+[sudo]
+disabled = false
+style = "bg:#33658A"
+format = "[](#33658A)[$symbol]($style)[ ](fg:#33658A)"
