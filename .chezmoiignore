@@ -1,0 +1,17 @@
+# Local machine secrets — never managed by chezmoi
+.localrc
+
+# Legacy symlink-based files (old bootstrap system)
+**/*.symlink
+**/*.symlink.example
+
+# macOS noise
+.DS_Store
+**/.DS_Store
+
+# chezmoi source-only files
+README.md
+LICENSE
+Brewfile
+.editorconfig
+.prettierrc.js

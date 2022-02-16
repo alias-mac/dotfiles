@@ -1,0 +1,4 @@
+# Set DOT to the chezmoi source directory so $DOT/bin/* references work
+# in git aliases, scripts, and non-interactive shells.
+export DOT="{{ .chezmoi.sourceDir }}"
+export PATH="$HOME/bin:$DOT/bin:$HOME/.local/bin:$PATH"
