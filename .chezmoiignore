@@ -16,6 +16,5 @@ node
 script
 setup
 system
-vim
 xcode
 zsh
