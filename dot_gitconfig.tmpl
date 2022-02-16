@@ -32,7 +32,11 @@
 [apply]
   whitespace = nowarn
 [merge]
+{{ if .remote -}}
+  conflictstyle = diff3
+{{ else -}}
   conflictstyle = zdiff3
+{{ end -}}
 [mergetool]
   keepBackup = false
 [diff]

@@ -1,9 +1,11 @@
 {{- $name := promptStringOnce . "name" "Full name" "Filipe Guerra" -}}
 {{- $email := promptStringOnce . "email" "Git email" "alias.mac@gmail.com" -}}
 {{- $workEmail := promptStringOnce . "workEmail" "Work email (leave empty if not a work machine)" "" -}}
+{{- $remote := or (env "SSH_CONNECTION" | not | not) (env "REMOTE_CONTAINERS" | not | not) (env "container" | not | not) (stat "/.dockerenv" | not | not) -}}
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
   name = {{ $name | quote }}
   email = {{ $email | quote }}
   workEmail = {{ $workEmail | quote }}
+  remote = {{ $remote }}
