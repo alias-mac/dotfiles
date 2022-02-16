@@ -1,0 +1,12 @@
+# Temp files
+*~
+
+# macOS
+.DS_Store
+
+# Personal scratch files
+.fguerra
+
+# IDEs
+.idea
+nbproject
