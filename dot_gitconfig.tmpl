@@ -33,6 +33,11 @@
   whitespace = nowarn
 [mergetool]
   keepBackup = false
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  colorMovedWS = allow-indentation-change
+  renames = true
 [difftool]
   prompt = false
 {{ if eq .chezmoi.os "darwin" -}}
