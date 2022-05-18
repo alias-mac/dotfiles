@@ -84,7 +84,7 @@ full_symbol = '🔌'
 charging_symbol = '⚡'
 discharging_symbol = '🔋'
 unknown_symbol = '⌛️'
-empty_symbol = '🚨'
+empty_symbol = '🪫'
 format = '[ $symbol$percentage ](fg:#1e1e2e bg:#9A348E)'
 
 [[battery.display]]
