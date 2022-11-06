@@ -1,23 +1,25 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](#9A348E)\
+[](mauve)\
 $battery\
+[](bg:red fg:mauve)\
 $username\
-[](bg:#DA627D fg:#9A348E)\
+[](bg:peach fg:red)\
 $directory\
-[](bg:#FCA17D fg:#DA627D)\
+[](bg:yellow fg:peach)\
 $git_branch\
 $git_status\
-[](fg:#FCA17D bg:#86BBD8)\
+[](fg:yellow bg:green)\
+$c\
 $golang\
 $java\
 $nodejs\
 $php\
 $rust\
-[](fg:#86BBD8 bg:#06969A)\
+[](fg:green bg:sapphire)\
 $docker_context\
-[ ](fg:#06969A)\
+[ ](fg:sapphire)\
 $line_break\
 $container\
 $hostname\
@@ -27,15 +29,16 @@ $character"""
 
 # allow git commands to run for the prompt
 command_timeout = 1000
+palette = 'catppuccin_mocha'
 
 [username]
 show_always = true
-style_user = "bg:#9A348E"
-style_root = "bg:#9A348E"
+style_user = "bg:red fg:crust"
+style_root = "bg:red fg:crust"
 format = '[ $user ]($style)'
 
 [directory]
-style = "bg:#DA627D"
+style = "bg:peach fg:crust"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = ".../"
@@ -48,36 +51,40 @@ truncation_symbol = ".../"
 "Code" = " "
 
 [git_branch]
-style = "bg:#FCA17D"
-format = '[[ $symbol $branch ](fg:#1e1e2e bg:#FCA17D)]($style)'
+style = "bg:yellow"
+format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
 [git_status]
-style = "bg:#FCA17D"
-format = '[[($all_status$ahead_behind )](fg:#1e1e2e bg:#FCA17D)]($style)'
+style = "bg:yellow"
+format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+
+[c]
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [golang]
-style = "bg:#86BBD8"
-format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [java]
-style = "bg:#86BBD8"
-format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [nodejs]
-style = "bg:#86BBD8"
-format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [php]
-style = "bg:#86BBD8"
-format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [rust]
-style = "bg:#86BBD8"
-format = '[[ $symbol( $version) ](fg:#1e1e2e bg:#86BBD8)]($style)'
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [docker_context]
-style = "bg:#06969A"
-format = '[[ $symbol( $context) ](fg:#1e1e2e bg:#06969A)]($style)'
+style = "bg:sapphire"
+format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
 [battery]
 full_symbol = '🔌'
@@ -85,11 +92,11 @@ charging_symbol = '⚡'
 discharging_symbol = '🔋'
 unknown_symbol = '⌛️'
 empty_symbol = '🪫'
-format = '[ $symbol$percentage ](fg:#1e1e2e bg:#9A348E)'
+format = '[ $symbol$percentage ](fg:crust bg:mauve)'
 
 [[battery.display]]
 threshold = 101
-style = "fg:#1e1e2e bg:#9A348E"
+style = "fg:crust bg:mauve"
 
 [line_break]
 disabled = false
@@ -97,20 +104,49 @@ disabled = false
 [cmd_duration]
 show_milliseconds = true
 format = " in $duration "
-style = "bg:#33658A"
+style = "bg:lavender"
 disabled = false
 show_notifications = false
 min_time_to_notify = 45000
 
 [container]
-style = "bg:#33658A"
-format = "[](#33658A)[$symbol $name]($style)[ ](fg:#33658A)"
+style = "bg:lavender fg:crust"
+format = "[](lavender)[$symbol $name]($style)[ ](fg:lavender)"
 
 [hostname]
-style = "bg:#33658A"
-format = "[](#33658A)[$hostname]($style)[ ](fg:#33658A)"
+ssh_symbol = "❮=❯ "
+style = "bg:lavender fg:crust"
+format = "[](lavender)[$ssh_symbol$hostname]($style)[ ](fg:lavender)"
 
 [sudo]
 disabled = false
-style = "bg:#33658A"
-format = "[](#33658A)[$symbol]($style)[ ](fg:#33658A)"
+style = "bg:lavender fg:crust"
+format = "[](lavender)[$symbol]($style)[ ](fg:lavender)"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
