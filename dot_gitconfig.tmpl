@@ -15,6 +15,8 @@
   wtf = !git-wtf
   # use the last commit message and amend your stuffs
   amend = commit --amend -C HEAD
+  # a very slightly quicker way to credit an author on the latest commit; e.g.: git credit "A U Thor <author@example.com>"
+  credit = commit --amend -C HEAD --author
   # undo your last commit, but don't throw away your changes
   undo = reset --soft HEAD~1
   fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
