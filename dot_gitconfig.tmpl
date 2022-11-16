@@ -13,6 +13,10 @@
   lf = log --summary --no-merges
   lfs = log --summary --no-merges --show-signature
   wtf = !git-wtf
+  # use the last commit message and amend your stuffs
+  amend = commit --amend -C HEAD
+  # undo your last commit, but don't throw away your changes
+  undo = reset --soft HEAD~1
   fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
   squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
   ri = rebase --interactive --autosquash
