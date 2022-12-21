@@ -2,6 +2,7 @@
 
 format = """
 [](mauve)\
+$os\
 $battery\
 [](bg:red fg:mauve)\
 $username\
@@ -30,6 +31,17 @@ $character"""
 # allow git commands to run for the prompt
 command_timeout = 1000
 palette = 'catppuccin_mocha'
+
+[os]
+disabled = false
+style = "bg:mauve fg:crust"
+
+[os.symbols]
+Alpine = ""
+Debian = "🌀"
+Linux = "🐧"
+Macos = "🍎"
+Ubuntu = ""
 
 [username]
 show_always = true
