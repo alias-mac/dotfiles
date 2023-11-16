@@ -38,10 +38,10 @@ style = "bg:mauve fg:crust"
 
 [os.symbols]
 Alpine = ""
-Debian = "🌀"
-Linux = "🐧"
-Macos = "🍎"
-Ubuntu = ""
+Debian = "󰣚"
+Linux = "󰌽"
+Macos = "󰀵"
+Ubuntu = "󰕈"
 
 [username]
 show_always = true
@@ -99,11 +99,11 @@ style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
 [battery]
-full_symbol = '🔌'
-charging_symbol = '⚡'
-discharging_symbol = '🔋'
-unknown_symbol = '⌛️'
-empty_symbol = '🪫'
+full_symbol = '󰁹'
+charging_symbol = '󰂄'
+discharging_symbol = '󰁽'
+unknown_symbol = '󰂃'
+empty_symbol = '󰂎'
 format = '[ $symbol$percentage ](fg:crust bg:mauve)'
 
 [[battery.display]]
@@ -126,7 +126,7 @@ style = "bg:lavender fg:crust"
 format = "[](lavender)[$symbol $name]($style)[ ](fg:lavender)"
 
 [hostname]
-ssh_symbol = "❮=❯ "
+ssh_symbol = "󰢹 "
 style = "bg:lavender fg:crust"
 format = "[](lavender)[$ssh_symbol$hostname]($style)[ ](fg:lavender)"
 
