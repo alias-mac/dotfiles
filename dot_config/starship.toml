@@ -56,11 +56,11 @@ truncation_length = 3
 truncation_symbol = ".../"
 
 [directory.substitutions]
-"Documents" = " "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
-"Code" = " "
+"Documents" = "󰈙 "
+"Downloads" = "󰇚 "
+"Music" = "󰝚 "
+"Pictures" = "󰋩 "
+"Code" = "󰲋 "
 
 [git_branch]
 style = "bg:yellow"
