@@ -1,0 +1,113 @@
+# activate mise early so managed tools are available during init
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+##
+# Path
+##
+
+# Homebrew on Apple Silicon
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Linuxbrew needs special paths defined
+if [[ "$(uname -s)" == "Linux" ]]; then
+  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+  export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+fi
+
+type -P vi &>/dev/null && export EDITOR='vi'
+type -P vim &>/dev/null && export EDITOR='vim'
+type -P subl &>/dev/null && export EDITOR='subl'
+type -P atom &>/dev/null && export EDITOR='atom'
+type -P code &>/dev/null && export EDITOR='code'
+
+# your projects folder
+export CODE=~/Code
+
+##
+# History
+##
+
+HISTFILE=~/.zsh_history
+# big big history
+HISTSIZE=100000
+SAVEHIST=100000
+
+# history like it should always be
+# http://zsh.sourceforge.net/Doc/Release/Options.html
+setopt HIST_VERIFY # don’t execute the line directly
+setopt EXTENDED_HISTORY # add timestamps to history
+setopt APPEND_HISTORY # adds history
+setopt INC_APPEND_HISTORY SHARE_HISTORY # adds history incrementally and share it across sessions
+setopt HIST_IGNORE_ALL_DUPS # don't record dupes in history
+setopt HIST_IGNORE_SPACE # commands prefixed with space won't be recorded
+setopt HIST_REDUCE_BLANKS # remove superfluous blanks
+
+##
+# Options
+##
+
+# don't expand aliases _before_ completion has finished
+#   like: git comm-[tab]
+setopt complete_aliases
+
+#setopt IGNORE_EOF # prevents closing the shell by mistake with `ctrl + d`
+
+# if there are no matches for globs, leave them alone and execute the command
+setopt NO_NOMATCH
+
+##
+# Aliases
+##
+
+# for colors
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# grep colors
+export GREP_OPTIONS='--color=auto'
+
+# alias for listing
+alias ll='ls -lah'
+alias la='ls -a'
+alias l='ls -lh'
+
+# alias for disk tools
+alias du='du -h'
+
+# alias for copy move and remove
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+
+# reload zsh config
+alias reload='. ~/.zshrc'
+
+# make me a password
+alias genpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 20`'
+
+# copy the public key
+alias pubkey="more ~/.ssh/id_ed25519.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+
+##
+# Completion
+##
+
+autoload -U compinit
+compinit
+
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
+
+# load .localrc for machine-specific secrets not in version control
+[[ -f ~/.localrc ]] && source ~/.localrc
+
+# initialize starship prompt
+if command -v starship > /dev/null ; then
+  eval "$(starship init zsh)"
+fi
