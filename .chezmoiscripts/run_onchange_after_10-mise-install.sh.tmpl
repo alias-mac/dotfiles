@@ -1,0 +1,9 @@
+#!/bin/bash
+# config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+
+set -euo pipefail
+
+MISE="{{ if $m := lookPath "mise" }}{{ $m }}{{ else }}{{ .chezmoi.homeDir }}/.local/bin/mise{{ end }}"
+
+$MISE trust {{ .chezmoi.homeDir }}/.config/mise
+$MISE install --yes

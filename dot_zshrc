@@ -1,0 +1,43 @@
+# shortcut to chezmoi source dir — set in ~/.zshenv
+# DOT is already exported via dot_zshenv.tmpl
+
+# activate mise early so managed tools are available during init
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+# all of our zsh files
+typeset -U config_files
+config_files=($DOT/**/*.zsh)
+
+# load the path files first
+for file in ${(M)config_files:#*/path.zsh}
+do
+  source $file
+done
+
+# load everything but path and completion files
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+do
+  source $file
+done
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
+
+# load completions after autocomplete initializes
+for file in ${(M)config_files:#*/completion.zsh}
+do
+  source $file
+done
+
+unset config_files
+
+# load .localrc for machine-specific secrets not in version control
+[[ -f ~/.localrc ]] && source ~/.localrc
+
+# initialize starship prompt
+if command -v starship > /dev/null ; then
+  eval "$(starship init zsh)"
+fi
