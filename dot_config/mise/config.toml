@@ -3,6 +3,7 @@ trusted_config_paths = ["~/Code", "~/Code/Work"]
 
 [tools]
 bat = "latest"
+difftastic = "latest"
 fd = "latest"
 gh = "latest"
 node = "lts"

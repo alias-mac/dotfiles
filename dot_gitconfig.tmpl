@@ -26,6 +26,7 @@
   f = fetch --prune
   fa = fetch --all --prune --tags
   count = shortlog -sn
+  difft = "!f() { git -c diff.external=difft \"$@\"; }; f"
 
 [init]
   defaultBranch = main
@@ -56,6 +57,7 @@
   colorMoved = plain
   colorMovedWS = allow-indentation-change
   renames = true
+  external = difft
 [difftool]
   prompt = false
 {{ if eq .chezmoi.os "darwin" -}}
