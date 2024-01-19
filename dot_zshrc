@@ -17,9 +17,6 @@ if [[ "$(uname -s)" == "Linux" ]]; then
   export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 fi
 
-# your projects folder
-export CODE=~/Code
-
 ##
 # History
 ##
