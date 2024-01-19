@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# Sets OS X defaults by running $DOT/macos/set-defaults.sh.
-
-exec $DOT/macos/set-defaults.sh
