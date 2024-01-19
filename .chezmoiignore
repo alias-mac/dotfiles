@@ -7,7 +7,6 @@ LICENSE
 Brewfile
 
 # Used in place from the repo, not copied to ~
-functions
 git
 macos
 setup
