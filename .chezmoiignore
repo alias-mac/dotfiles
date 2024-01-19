@@ -9,7 +9,5 @@ Brewfile
 # Used in place from the repo ($DOT), not copied to ~
 functions
 git
-homebrew
 macos
-node
 setup

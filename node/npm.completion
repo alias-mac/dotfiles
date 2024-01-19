@@ -1,7 +1,0 @@
-#
-# Provide npm completion if installed
-#
-
-type -P npm &>/dev/null || return
-
-eval "$(npm completion)"
