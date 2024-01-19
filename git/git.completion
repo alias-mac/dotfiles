@@ -1,8 +1,0 @@
-#
-# Provide git autocomplete
-#
-
-prefix=$(brew --prefix)
-
-__open_war_loadifexists $prefix"/etc/bash_completion.d/git-completion.bash"
-__open_war_loadifexists $prefix"/etc/bash_completion.d/hub.bash_completion.sh"
