@@ -15,6 +15,7 @@ $git_status\
 $c\
 $golang\
 $java\
+$kotlin\
 $nodejs\
 $php\
 $rust\
@@ -79,6 +80,11 @@ style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [java]
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+
+[kotlin]
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
