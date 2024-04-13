@@ -5,9 +5,24 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # grep colors
 export GREP_OPTIONS='--color=auto'
 
+# Modern CLI replacements
+if command -v bat > /dev/null ; then
+  alias cat="bat"
+elif command -v batcat > /dev/null ; then
+  alias cat="batcat"
+fi
+
+if command -v lsd > /dev/null ; then
+  alias ls="lsd"
+  alias ll='ls -lah'
+  alias llg='ls -lahg' # -g shows git status in lsd (slower)
+else
+  alias ll='ls -lah'
+fi
+
 # alias for listing
-alias ll='ls -lah'
 alias la='ls -a'
+alias lt='ls --tree'
 alias l='ls -lh'
 
 # alias for disk tools
