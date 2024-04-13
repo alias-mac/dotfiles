@@ -3,7 +3,7 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # grep colors
-export GREP_OPTIONS='--color=auto'
+alias grep='grep --color=auto'
 
 # Modern CLI replacements
 if command -v bat > /dev/null ; then
