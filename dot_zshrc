@@ -37,6 +37,11 @@ unset config_files
 # load .localrc for machine-specific secrets not in version control
 [[ -f ~/.localrc ]] && source ~/.localrc
 
+# enable fzf autocompletion and key-bindings
+if command -v fzf > /dev/null ; then
+  source <(fzf --zsh)
+fi
+
 # initialize starship prompt
 if command -v starship > /dev/null ; then
   eval "$(starship init zsh)"
