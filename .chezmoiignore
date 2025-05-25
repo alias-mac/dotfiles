@@ -4,7 +4,6 @@
 # chezmoi source-only files
 README.md
 LICENSE
-Brewfile
 
 # Used in place from the repo, not copied to ~
 git
