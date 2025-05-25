@@ -1,0 +1,19 @@
+{{- if not .remote -}}
+cask_args appdir: '/Applications'
+
+brew 'btop'
+brew 'coreutils'
+brew 'gh'
+brew 'git'
+brew 'grc'
+brew 'terminal-notifier'
+brew 'wget'
+
+cask 'appcleaner'
+cask 'gpg-suite'
+cask 'iterm2'
+cask 'raycast'
+cask 'slack'
+cask 'visual-studio-code'
+cask 'vlc'
+{{- end }}
