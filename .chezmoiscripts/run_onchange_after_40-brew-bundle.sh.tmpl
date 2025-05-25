@@ -1,0 +1,15 @@
+{{- if and (eq .chezmoi.os "darwin") (not .remote) -}}
+#!/bin/bash
+# Brewfile hash: {{ include "dot_Brewfile.tmpl" | sha256sum }}
+set -euo pipefail
+
+# Each chezmoi script is its own process; find brew even if this shell's PATH predates the install
+for b in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+  [[ -x "$b" ]] && eval "$("$b" shellenv)" && break
+done
+command -v brew >/dev/null || { echo "ERROR: brew not found; 05-install-homebrew should have installed it" >&2; exit 1; }
+[[ -f "${HOME}/.Brewfile" ]] || { echo "ERROR: ~/.Brewfile missing" >&2; exit 1; }
+
+echo "==> Running brew bundle"
+brew bundle --global
+{{- end }}
