@@ -18,6 +18,7 @@ $java\
 $kotlin\
 $nodejs\
 $php\
+$python\
 $rust\
 [](fg:green bg:sapphire)\
 $docker_context\
@@ -95,6 +96,11 @@ format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 [php]
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+
+[python]
+symbol = ""
+style = "bg:green"
+format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
 
 [rust]
 style = "bg:green"
