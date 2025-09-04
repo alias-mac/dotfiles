@@ -12,6 +12,7 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:yellow bg:green)\
+$bun\
 $c\
 $golang\
 $java\
@@ -71,6 +72,10 @@ format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 [git_status]
 style = "bg:yellow"
 format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+
+[bun]
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [c]
 style = "bg:green"
