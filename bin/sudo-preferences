@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# macOS preferences that require user password.
+# Run once per machine.
+
+exec "$DOT/macos/sudo-preferences.sh"

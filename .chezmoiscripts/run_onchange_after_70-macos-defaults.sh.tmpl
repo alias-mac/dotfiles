@@ -1,0 +1,6 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# preferences hash: {{ include "macos/preferences.sh" | sha256sum }}
+set -euo pipefail
+source "{{ .chezmoi.sourceDir }}/macos/preferences.sh"
+{{- end }}
