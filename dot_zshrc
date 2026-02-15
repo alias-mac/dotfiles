@@ -1,7 +1,7 @@
 # shortcut to chezmoi source dir — set in ~/.zshenv
 # DOT is already exported via dot_zshenv.tmpl
 
-# activate mise early so managed tools are available during init
+# activate mise for tool version management
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
@@ -45,4 +45,14 @@ fi
 # initialize starship prompt
 if command -v starship > /dev/null ; then
   eval "$(starship init zsh)"
+fi
+
+# zsh plugins (managed via chezmoi externals)
+if [[ -d ~/.zsh/zsh-autosuggestions ]]; then
+  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# syntax highlighting must be sourced last
+if [[ -d ~/.zsh/zsh-syntax-highlighting ]]; then
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
