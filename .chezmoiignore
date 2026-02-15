@@ -15,4 +15,5 @@ LICENSE
 Brewfile
 .editorconfig
 .prettierrc.js
+iterm2
 macos

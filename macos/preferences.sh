@@ -10,6 +10,7 @@ set -euo pipefail
 
 echo "==> Setting macOS defaults"
 
+NEEDS_LOGOUT=false
 
 # Set a default if it differs from the expected value.
 # Usage: set_default <domain> <key> <type> <value> [FLAG_VAR]
@@ -36,6 +37,9 @@ set_default() {
 # Dark mode
 osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
 
+# Keep windows when quitting apps (enable window restoration)
+set_default NSGlobalDomain NSQuitAlwaysKeepsWindows bool 1
+
 ##
 # Date & Time
 ##
@@ -48,8 +52,6 @@ set_default NSGlobalDomain AppleICUForce24HourTime bool 1 NEEDS_CONTROLCENTER_RE
 ##
 # Language & Region
 ##
-
-NEEDS_LOGOUT=false
 
 # Set languages (English + Portuguese)
 if ! defaults read -g AppleLanguages 2>/dev/null | grep -q "pt"; then
