@@ -4,7 +4,5 @@
 # chezmoi source-only files
 README.md
 LICENSE
-
-# Used in place from the repo, not copied to ~
 macos
 setup
