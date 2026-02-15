@@ -1,0 +1,16 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# profile hash: {{ include "iterm2/Bond.json" | sha256sum }}
+set -euo pipefail
+
+PROFILE_DIR="${HOME}/Library/Application Support/iTerm2/DynamicProfiles"
+PROFILE_SRC="{{ .chezmoi.sourceDir }}/iterm2/Bond.json"
+
+mkdir -p "$PROFILE_DIR"
+cp "$PROFILE_SRC" "$PROFILE_DIR/Bond.json"
+
+# Set Bond as the default profile
+defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "bond-default-profile"
+
+echo "==> iTerm2 Bond profile installed"
+{{- end }}
