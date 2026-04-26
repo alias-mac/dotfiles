@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["*.md"],
+      "options": {
+        "singleQuote": false,
+        "proseWrap": "always"
+      }
+    }
+  ]
+}

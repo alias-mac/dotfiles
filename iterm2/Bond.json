@@ -41,12 +41,7 @@
       "Disable Window Resizing": true,
       "Close Sessions On End": true,
       "Scrollback With Status Bar": false,
-      "Jobs to Ignore": [
-        "rlogin",
-        "ssh",
-        "slogin",
-        "telnet"
-      ],
+      "Jobs to Ignore": ["rlogin", "ssh", "slogin", "telnet"],
       "Scrollback Lines": 0,
       "Scrollback in Alternate Screen": true,
       "Status Bar Layout": {
