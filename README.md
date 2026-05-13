@@ -1,62 +1,61 @@
 # Alias does dotfiles
 
-## dotfiles
+My shell, git and app settings, plus the tools I use every day.
 
-Your [dotfiles](http://dotfiles.github.com) are how you personalize your system.
-These are mine based on [holman's dot files](https://github.com/holman/dotfiles)
-but more focused on `bash`. If you match up along most of those lines, you may
-dig my dotfiles.
-
-I was a little tired of having long alias files and everything strewn about
-(which is extremely common on other dotfiles projects, too). That led to this
-project being much more topic-centric. I realized I could split a lot of things
-up into the main areas I used (PHP, git, system libraries, and so on), so I
-structured the project accordingly.
+- [chezmoi](https://www.chezmoi.io) installs the files and fills in
+  machine-specific values, such as name and email.
+- [mise](https://mise.jdx.dev) installs and pins tool versions.
+- [Homebrew](https://brew.sh) installs the apps.
 
 ## Install
 
-Run this:
+**Before you start (macOS):** give your terminal Full Disk Access in System
+Settings → Privacy & Security → Full Disk Access, then quit and reopen it. The
+setup changes Safari settings, and macOS only allows that with Full Disk Access.
+
+**Fresh machine** (no clone needed):
 
 ```sh
-git clone https://github.com/alias-mac/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-script/bootstrap
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init alias-mac --apply
 ```
 
-This will symlink the appropriate files in `.dotfiles` to your home directory.
-Everything is configured and tweaked within `~/.dotfiles`, though.
+**From the repo:**
 
-The main file you'll want to change right off the bat is `bash/bashrc.symlink`,
-which sets up a few paths that'll be different on your particular machine. If
-you prefer you can use the `~/.localrc` to override them per instance.
+```sh
+git clone git@github.com:alias-mac/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./setup
+```
 
-## Topical
+This will install chezmoi (if needed), apply your dotfiles, install
+[Homebrew](https://brew.sh) packages, set up mise tools, and configure macOS
+preferences. Chezmoi will prompt for your name, email, and work email on first
+run.
 
-Everything's built around topic areas. If you're adding a new area to your
-forked dotfiles — say, "Java" — you can simply add a `java` directory and put
-files in there. Anything with an extension of `.bash` will get automatically
-included into your shell. Anything with an extension of `.symlink` will get
-symlinked without extension into `$HOME` when you run `script/bootstrap`.
+The main file you'll want to change right off the bat is `.chezmoi.toml.tmpl`,
+which controls the template variables for your particular machine. You can also
+use `~/.localrc` for machine-specific overrides that shouldn't be versioned.
 
-### Components
+## Components
 
 There's a few special files in the hierarchy.
 
-- **bin/**: Anything in `bin/` will get added to your `$PATH` and be made
-  available everywhere.
-- **Brewfile**: This is a list of packages and applications for
-  [Homebrew](https://brew.sh) and [Homebrew Cask](https://caskroom.github.io) to
-  install: things like git, grc, wget or applications like Chrome and VSCode.
-  Might want to edit this file before running any initial setup.
-- **topic/\*.bash**: Any files ending in `.bash` get loaded into your
-  environment.
-- **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into your
-  `$HOME`. This is so you can keep all of those versioned in your dotfiles but
-  still keep those autoloaded files in your home directory. These get symlinked
-  in when you run `script/bootstrap`.
-- **topic/\*.completion.bash**: Any files ending in `completion.bash` get loaded
-  last so that they get loaded after we set up all `*.bash` files
-  (dependencies).
+- **bin/**: Scripts in `bin/` are installed to `~/bin`, which is on your
+  `$PATH`. Name them `executable_<name>` so chezmoi marks them executable (e.g.,
+  `bin/executable_git-up` becomes `~/bin/git-up`).
+- **dot_Brewfile.tmpl**: This is a list of packages and applications for
+  [Homebrew](https://brew.sh) to install: things like git, coreutils, or
+  applications like iTerm2, Raycast and VSCode. On macOS it becomes
+  `~/.Brewfile`, and `brew bundle` runs whenever it changes. Might want to edit
+  this file before running any initial setup.
+- **dot\_\***: Files managed by chezmoi, placed in your `$HOME` (e.g.,
+  `dot_zshrc` becomes `~/.zshrc`).
+- **dot\_\*.tmpl**: Templated files — chezmoi substitutes variables like name,
+  email, and OS.
+- **.chezmoiscripts/**: Scripts that run automatically during `chezmoi apply`
+  (Homebrew, mise install, macOS preferences).
+- **.chezmoiexternals/**: External dependencies managed by chezmoi (zsh plugins,
+  mise binary).
 
 ## Bugs
 
@@ -67,11 +66,3 @@ chance I may break something if I forget to make a check for a dependency.
 If you're brand-new to the project and run into any blockers, please
 [open an issue](https://github.com/alias-mac/dotfiles/issues) on this repository
 and I'd love to get it fixed for you!
-
-## Thanks
-
-I forked [Zach Holman](http://github.com/holman)'s excellent
-[dotfiles](http://github.com/holman/dotfiles) for a some years before the weight
-of my changes and tweaks inspired me to finally roll my own. But Holman's
-dotfiles were an easy way to get into bash customization. A decent amount of the
-code in these dotfiles stem or are inspired from Holman's original project.
