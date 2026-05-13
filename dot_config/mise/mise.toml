@@ -1,4 +1,7 @@
 [settings]
+experimental = true
+lockfile = true
+pin = true
 trusted_config_paths = ["~/Code", "~/Code/Work"]
 
 [tools]

@@ -1,5 +1,6 @@
 #!/bin/bash
-# config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+# config hash: {{ include "dot_config/mise/mise.toml" | sha256sum }}
+# lock hash: {{ include "dot_config/mise/mise.lock" | sha256sum }}
 
 set -euo pipefail
 
