@@ -26,8 +26,31 @@ set_default() {
       [[ "$value" == "1" ]] && write_value="true" || write_value="false"
     fi
     defaults write "$domain" "$key" "-$type" "$write_value"
+    if [[ "$(defaults read "$domain" "$key" 2>/dev/null || echo "")" != "$value" ]]; then
+      echo "ERROR: $domain $key did not persist (expected $value). Sandboxed apps like Safari need Full Disk Access." >&2
+      exit 1
+    fi
     echo "  changed: $domain $key: ${current:-unset} -> $value"
     if [[ -n "$flag_var" ]]; then eval "$flag_var=true"; fi
+  fi
+}
+
+# Set a plist entry, creating missing parent dictionaries first.
+# Usage: plist_set <plist> <Key:Sub:Leaf> <type> <value>
+plist_set() {
+  local plist="$1" path="$2" type="$3" value="$4"
+  local pb=/usr/libexec/PlistBuddy parent="" part
+  local rest="$path"
+  while [[ "$rest" == *:* ]]; do
+    part="${rest%%:*}"
+    rest="${rest#*:}"
+    parent="${parent}:${part}"
+    "$pb" -c "Print ${parent}" "$plist" >/dev/null 2>&1 || "$pb" -c "Add ${parent} dict" "$plist"
+  done
+  if "$pb" -c "Print :${path}" "$plist" >/dev/null 2>&1; then
+    "$pb" -c "Set :${path} ${value}" "$plist"
+  else
+    "$pb" -c "Add :${path} ${type} ${value}" "$plist"
   fi
 }
 
@@ -55,8 +78,9 @@ set_default NSGlobalDomain AppleICUForce24HourTime bool 1 NEEDS_CONTROLCENTER_RE
 ##
 
 # Set languages (English + Portuguese)
-if ! defaults read -g AppleLanguages 2>/dev/null | grep -q "pt"; then
-  defaults write -g AppleLanguages -array "en-US" "pt" "pt-US"
+current_languages="$(defaults read -g AppleLanguages 2>/dev/null || echo "")"
+if [[ "$(tr -d ' \n"()' <<< "$current_languages")" != "en-US,pt-US" ]]; then
+  defaults write -g AppleLanguages -array "en-US" "pt-US"
   defaults write -g AppleLocale -string "en_US@currency=EUR"
   NEEDS_LOGOUT=true
 fi
@@ -130,12 +154,14 @@ set_default com.apple.finder FXDefaultSearchScope string SCcf NEEDS_FINDER_RESTA
 set_default com.apple.desktopservices DSDontWriteNetworkStores bool 1
 set_default com.apple.finder FXPreferredViewStyle string clmv NEEDS_FINDER_RESTART
 set_default com.apple.finder WarnOnEmptyTrash bool 1
-set_default com.apple.finder NewWindowTargetPath string "file://${HOME}" NEEDS_FINDER_RESTART
+# New Finder windows open the home folder (PfHm)
+set_default com.apple.finder NewWindowTarget string PfHm NEEDS_FINDER_RESTART
 # Icon views
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
+FINDER_PLIST="${HOME}/Library/Preferences/com.apple.finder.plist"
+plist_set "$FINDER_PLIST" DesktopViewSettings:IconViewSettings:showItemInfo bool true
+plist_set "$FINDER_PLIST" StandardViewSettings:IconViewSettings:showItemInfo bool true
+plist_set "$FINDER_PLIST" DesktopViewSettings:IconViewSettings:arrangeBy string grid
+plist_set "$FINDER_PLIST" StandardViewSettings:IconViewSettings:arrangeBy string name
 
 ##
 # Dock
@@ -144,7 +170,7 @@ set_default com.apple.finder NewWindowTargetPath string "file://${HOME}" NEEDS_F
 NEEDS_DOCK_RESTART=false
 
 # Minimize on double click
-set_default NSGlobalDomain AppleMiniaturizeOnDoubleClick bool 1 NEEDS_DOCK_RESTART
+set_default NSGlobalDomain AppleActionOnDoubleClick string Minimize NEEDS_DOCK_RESTART
 set_default com.apple.dock minimize-to-application bool 1 NEEDS_DOCK_RESTART
 set_default com.apple.dock magnification bool 1 NEEDS_DOCK_RESTART
 set_default com.apple.dock tilesize int 45 NEEDS_DOCK_RESTART
