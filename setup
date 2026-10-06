@@ -6,7 +6,7 @@
 #   ./setup
 #
 # Fresh machine (no clone needed):
-#   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --branch chezmoi \
+#   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply \
 #     git@github.com:alias-mac/dotfiles.git
 #
 
