@@ -205,6 +205,16 @@ if [[ "$(defaults read com.apple.Terminal 'Default Window Settings' 2>/dev/null)
   defaults write com.apple.Terminal "Startup Window Settings" -string "Bond"
 fi
 
+# Option as Meta key in the Bond profile: ⌥⌫ deletes a word, ⌥←/→ moves by word.
+# Importing Bond.terminal again would only add a "Bond 1" copy, so set the key directly.
+TERMINAL_META="$(defaults export com.apple.Terminal - | plutil -extract 'Window Settings.Bond.useOptionAsMetaKey' raw -o - - 2>/dev/null || true)"
+if [[ "$TERMINAL_META" != "true" ]]; then
+  defaults export com.apple.Terminal - \
+    | plutil -replace 'Window Settings.Bond.useOptionAsMetaKey' -bool YES -o - - \
+    | defaults import com.apple.Terminal -
+  echo "  changed: com.apple.Terminal Bond useOptionAsMetaKey: ${TERMINAL_META:-unset} -> true"
+fi
+
 ##
 # Restart affected services
 ##
