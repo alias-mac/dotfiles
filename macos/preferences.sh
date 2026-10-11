@@ -187,6 +187,9 @@ set_default com.apple.dock expose-group-apps bool 1 NEEDS_DOCK_RESTART
 # Show full URL (including https:// and path) in address bar
 set_default com.apple.Safari ShowFullURLInSmartSearchField bool 1
 
+# Show the status bar (link target on hover)
+set_default com.apple.Safari ShowOverlayStatusBar bool 1
+
 ##
 # Activity Monitor
 ##
